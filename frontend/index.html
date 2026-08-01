@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Study Buddy</title>
+<!-- all your CSS stays exactly as before – I won't repeat it here for brevity -->
+</head>
+<body>
+<!-- all your HTML stays exactly as before, but delete the <div class="key-banner"> block -->
+<!-- ... -->
+
+<script>
+/* ============================================================
+   FRONTEND – calls secure Vercel proxy (no API key in code)
+   ============================================================ */
+
+// ─── Call the proxy ──────────────────────────────────────────────
+async function callAI(system, user) {
+  // Change this URL to your own Vercel proxy URL after deployment
+  const PROXY_URL = 'https://study-buddy-olive-two.vercel.app/api/groq';
+
+  const response = await fetch(proxyUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ system, user })
+  });
+
+  if (!response.ok) {
+    const err = await response.json();
+    throw new Error(err.error || 'Proxy request failed');
+  }
+  const data = await response.json();
+  return data.content.trim();
+}
+
+// ─── All the helper functions (extractJson, renderMarkdown, download, etc.)
+//     stay exactly as in the original script – I won't repeat them.
+//     Just replace every occurrence of "callClaude" with "callAI".
+
+// ─── Example: Explain button handler ──────────────────────────
+document.getElementById('explain-btn').addEventListener('click', async () => {
+  // ... same setup ...
+  try {
+    const text = await callAI(system, user);   // ← changed
+    // ... same output ...
+  } catch (e) { /* ... */ }
+});
+
+// Do the same for summarise, quiz, flashcards – replace "callClaude" with "callAI".
+</script>
+</body>
+</html>
