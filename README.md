@@ -13,7 +13,6 @@
 
 <div align="center">
 
-# 📚 Study Buddy
 <div align="center">
 
 <img src="./docs/study-buddy.png" alt="VitaTrack" width="500" />
