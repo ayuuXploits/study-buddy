@@ -17,7 +17,7 @@
 [![Groq](https://img.shields.io/badge/AI-Groq-00A5E0?style=for-the-badge)](https://groq.com)
 [![Vercel](https://img.shields.io/badge/Proxy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
-[**📖 Try It**](https://study-buddy-olive-two.vercel.app/) &nbsp;·&nbsp; [**🐛 Report Bug**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=bug&title=%5BBug%5D+) &nbsp;·&nbsp; [**✨ Request Feature**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=enhancement&title=%5BFeature%5D+)
+[**📖 Try It**](https://ayuuxploits.github.io/study-buddy/) &nbsp;·&nbsp; [**🐛 Report Bug**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=bug&title=%5BBug%5D+) &nbsp;·&nbsp; [**✨ Request Feature**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=enhancement&title=%5BFeature%5D+)
 
 <br/>
 
