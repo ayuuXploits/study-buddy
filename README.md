@@ -14,6 +14,9 @@
 <div align="center">
 
 # 📚 Study Buddy
+<div align="center">
+
+<img src="./docs/study-buddy.png" alt="VitaTrack" width="500" />
 
 **Pull a "book" off the shelf and let AI do the tutoring.**
 
