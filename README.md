@@ -33,8 +33,8 @@
 </div>
 <br/>
 
-<img src="./docs/IMG-1.png" width="48%" /> &nbsp; <img src="./docs/vitatrack2.png" width="48%" />
-<img src="./docs/vitatrack3.png" width="48%" /> &nbsp; <img src="./docs/vitatrack4.png" width="48%" />
+<img src="./docs/IMG-1.png" width="48%" /> &nbsp; <img src="./docs/IMG-2.png" width="48%" />
+<img src="./docs/IMG-3.png" width="48%" /> &nbsp; <img src="./docs/IMG-4.png" width="48%" />
 
 </div>
 
