@@ -31,6 +31,12 @@
 *No sign-up. No app to install. Paste a topic or your notes, and get an explanation, a summary, a quiz, or a flashcard deck.*
 
 </div>
+<br/>
+
+<img src="./docs/IMG-1" width="48%" /> &nbsp; <img src="./docs/vitatrack2.png" width="48%" />
+<img src="./docs/vitatrack3.png" width="48%" /> &nbsp; <img src="./docs/vitatrack4.png" width="48%" />
+
+</div>
 
 ---
 
