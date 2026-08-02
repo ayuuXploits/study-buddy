@@ -650,6 +650,27 @@ document.getElementById('fc-num').addEventListener('input', e => {
   document.getElementById('fc-num-val').textContent = e.target.value;
 });
 
+// ─── Helper to render math in an element ──────────────────────
+function renderMath(element) {
+  if (typeof renderMathInElement !== 'undefined') {
+    try {
+      renderMathInElement(element, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+    } catch (e) {
+      console.warn('Math rendering error:', e);
+    }
+  } else {
+    console.warn('KaTeX auto-render not available.');
+  }
+}
+
 // ─── EXPLAIN ──────────────────────────────────────────────────────
 document.getElementById('explain-btn').addEventListener('click', async () => {
   const topic = document.getElementById('explain-topic').value.trim();
@@ -665,10 +686,10 @@ document.getElementById('explain-btn').addEventListener('click', async () => {
   downloadEl.style.display = 'none';
 
   const levelMap = {
-  "Simple (ELI5)": "Explain this as if to a 10-year-old. Use very simple language, short sentences, no jargon.",
-  "Intermediate": "Explain this clearly to a high-school or early college student new to the topic.",
-  "Advanced": "Explain this with technical depth suitable for an advanced student or professional. At the end, include a short 'References' section with 3-5 key citations (author, year, title, and optionally journal/book). Keep each citation brief (one line). Do not say you couldn't include more – just provide what you have."
-};
+    "Simple (ELI5)": "Explain this as if to a 10-year-old. Use very simple language, short sentences, no jargon.",
+    "Intermediate": "Explain this clearly to a high-school or early college student new to the topic.",
+    "Advanced": "Explain this with technical depth suitable for an advanced student or professional. At the end, include a short 'References' section with 3-5 key citations (author, year, title, and optionally journal/book). Keep each citation brief (one line). Do not say you couldn't include more – just provide what you have."
+  };
   let extras = [];
   if (analogy) extras.push("Include one memorable real-world analogy.");
   if (example) extras.push("Include one short, concrete worked example.");
@@ -677,25 +698,14 @@ document.getElementById('explain-btn').addEventListener('click', async () => {
 
   setBusy(document.getElementById('explain-btn'), statusEl, errorEl, true);
   try {
-  const text = await callAI(system, user);
-  outputEl.innerHTML = renderMarkdown(text);
-  
-  // Auto‑render math formulas
-  if (window.renderMathInElement) {
-    renderMathInElement(outputEl, {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false},
-        {left: '\\(', right: '\\)', display: false},
-        {left: '\\[', right: '\\]', display: true}
-      ],
-      throwOnError: false
-    });
-  }
-  
-  outputEl.classList.add('show');
-  downloadEl.style.display = 'inline-block';
-  // ...
+    const text = await callAI(system, user);
+    outputEl.innerHTML = renderMarkdown(text);
+    
+    // Render math after a small delay to ensure DOM is ready
+    setTimeout(() => renderMath(outputEl), 50);
+    
+    outputEl.classList.add('show');
+    downloadEl.style.display = 'inline-block';
     downloadEl.onclick = () => download('explanation_' + topic.slice(0, 30).replace(/\s+/g, '_') + '.md', text);
   } catch (e) {
     showError(errorEl, e.message || "Something went wrong.");
@@ -727,13 +737,17 @@ document.getElementById('summarize-btn').addEventListener('click', async () => {
     "Medium": "Provide a moderately detailed summary covering the main ideas.",
     "Comprehensive": "Provide a thorough summary capturing important details without losing nuance, but stay under 350 words."
   };
-  const system = "You are a study assistant expert at distilling academic content into crisp, accurate summaries. Use markdown formatting.";
+  const system = "You are a study assistant expert at distilling academic content into crisp, accurate summaries. Use markdown formatting. For any mathematical formulas, use LaTeX notation: inline with `$...$` and display equations with `$$...$$`.";
   const user = styleMap[style] + " " + lengthMap[length] + "\n\nNotes to summarize:\n\n" + notes;
 
   setBusy(document.getElementById('summarize-btn'), statusEl, errorEl, true);
   try {
     const text = await callAI(system, user);
     outputEl.innerHTML = renderMarkdown(text);
+    
+    // Render math after a small delay
+    setTimeout(() => renderMath(outputEl), 50);
+    
     outputEl.classList.add('show');
     downloadEl.style.display = 'inline-block';
     downloadEl.onclick = () => download('summary.md', text);
@@ -764,7 +778,7 @@ document.getElementById('quiz-btn').addEventListener('click', async () => {
 
   const system = 'You are a quiz generator. Return ONLY valid JSON, no other text, in this exact format: ' +
     '{"questions": [{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "answer": "A", "explanation": "..."}]}. ' +
-    'The answer field must be just the letter. Keep each explanation under 15 words.';
+    'The answer field must be just the letter. Keep each explanation under 15 words. Use LaTeX for math if needed.';
   const user = 'Generate ' + numQ + ' ' + difficulty.toLowerCase() + '-difficulty multiple-choice questions based on this ' +
     (source === 'topic' ? 'topic' : 'set of notes') + ':\n\n' + input;
 
@@ -818,6 +832,9 @@ function renderQuiz() {
   html += '</div>';
   outputEl.innerHTML = html;
 
+  // Render math in quiz questions if any
+  setTimeout(() => renderMath(outputEl), 50);
+
   outputEl.querySelectorAll('.opt-btn').forEach(b => {
     b.addEventListener('click', () => {
       if (quizSubmitted) return;
@@ -850,7 +867,7 @@ document.getElementById('fc-btn').addEventListener('click', async () => {
 
   const detail = depth === 'Concise' ? 'Keep answers to one short sentence.' : 'Provide a fuller answer with a bit of context, 2-3 sentences.';
   const system = 'You are a flashcard generator. Return ONLY valid JSON, no other text: ' +
-    '{"flashcards": [{"front": "question or term", "back": "answer or definition"}]}.';
+    '{"flashcards": [{"front": "question or term", "back": "answer or definition"}]}. Use LaTeX for math if needed.';
   const user = 'Generate ' + numCards + ' flashcards based on this ' + (source === 'topic' ? 'topic' : 'set of notes') + '. ' + detail + '\n\n' + input;
 
   setBusy(document.getElementById('fc-btn'), statusEl, errorEl, true);
@@ -886,6 +903,9 @@ function renderFlashcards() {
   html += '<button class="btn ghost small" id="fc-export">↓ Export deck (.md)</button>';
   html += '</div></div>';
   outputEl.innerHTML = html;
+
+  // Render math in flashcard content
+  setTimeout(() => renderMath(outputEl), 50);
 
   document.getElementById('fc-card-el').addEventListener('click', () => { fcFlipped = !fcFlipped; renderFlashcards(); });
   document.getElementById('fc-flip').addEventListener('click', (e) => { e.stopPropagation(); fcFlipped = !fcFlipped; renderFlashcards(); });
