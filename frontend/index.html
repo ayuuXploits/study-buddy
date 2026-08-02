@@ -669,7 +669,7 @@ document.getElementById('explain-btn').addEventListener('click', async () => {
   let extras = [];
   if (analogy) extras.push("Include one memorable real-world analogy.");
   if (example) extras.push("Include one short, concrete worked example.");
-  const system = "You are an expert tutor who explains complex ideas clearly. Use markdown with headers and bullet points where helpful. Keep the whole response under 350 words so it stays focused.";
+  const system = "You are an expert tutor who explains complex ideas clearly. Use markdown with headers and bullet points where helpful. Provide a thorough explanation, and if references are requested, include them concisely. Do not mention any limitations about length or character count – just produce the requested content.";
   const user = levelMap[level] + "\n\nTopic: " + topic + "\n\n" + extras.join(' ');
 
   setBusy(document.getElementById('explain-btn'), statusEl, errorEl, true);
