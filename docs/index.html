@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Study Buddy</title>
 <style>
-  /* === all the CSS from your original code === */
+  /* ─── CSS (unchanged) ─── */
   :root{
     --bg-0:#0e1f18;
     --bg-1:#16301f;
@@ -55,9 +55,7 @@
     padding:16px 34px;
     border-radius:3px;
     position:relative;
-    box-shadow:
-      0 1px 0 rgba(255,255,255,0.5) inset,
-      0 18px 34px -14px rgba(0,0,0,0.6);
+    box-shadow:0 1px 0 rgba(255,255,255,0.5) inset, 0 18px 34px -14px rgba(0,0,0,0.6);
     border:1px solid #b89e66;
   }
   .nameplate::before,.nameplate::after{
@@ -76,12 +74,7 @@
     letter-spacing:0.06em;
     margin:0;
   }
-  .hero p{
-    margin:14px auto 0;
-    color:var(--moss);
-    font-size:0.92rem;
-    max-width:42ch;
-  }
+  .hero p{margin:14px auto 0;color:var(--moss);font-size:0.92rem;max-width:42ch;}
 
   .shelf{
     display:flex;
@@ -133,7 +126,6 @@
   .spine[data-tab="summarize"]{--spine-color:#274a63;}
   .spine[data-tab="quiz"]{--spine-color:#6e2b28;}
   .spine[data-tab="flashcards"]{--spine-color:#7d631f;}
-
   @media (max-width:560px){
     .shelf{gap:4px;}
     .spine{width:auto;flex:1;height:104px;}
@@ -141,19 +133,15 @@
   }
 
   .panel-shell{
-    background:
-      linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dim) 100%);
+    background:linear-gradient(180deg, var(--parchment) 0%, var(--parchment-dim) 100%);
     border-radius:6px;
     padding:36px;
     color:var(--ink);
     position:relative;
-    box-shadow:
-      0 30px 60px -24px rgba(0,0,0,0.65),
-      0 1px 0 rgba(255,255,255,0.4) inset;
+    box-shadow:0 30px 60px -24px rgba(0,0,0,0.65), 0 1px 0 rgba(255,255,255,0.4) inset;
   }
   .panel-shell::before{
-    content:'';
-    position:absolute;inset:0;
+    content:'';position:absolute;inset:0;
     border-radius:6px;
     background:radial-gradient(ellipse 500px 200px at 50% 0%, rgba(0,0,0,0.05), transparent 70%);
     pointer-events:none;
@@ -163,12 +151,7 @@
   .panel{display:none;}
   .panel.active{display:block;}
 
-  .panel h2{
-    font-family:var(--font-display);
-    font-size:1.35rem;
-    margin:0 0 4px;
-    color:var(--ink);
-  }
+  .panel h2{font-family:var(--font-display);font-size:1.35rem;margin:0 0 4px;color:var(--ink);}
   .panel .sub{color:#6b5d40;font-size:0.9rem;margin:0 0 22px;}
 
   label.field-label{
@@ -340,9 +323,7 @@
     position:absolute;inset:0;
     backface-visibility:hidden;
     border-radius:6px;
-    background:
-      repeating-linear-gradient(to bottom, transparent 0 35px, #ddc99a 35px 36px),
-      #fffaf0;
+    background:repeating-linear-gradient(to bottom, transparent 0 35px, #ddc99a 35px 36px), #fffaf0;
     border:1.5px solid var(--parchment-shadow);
     padding:26px 30px 26px 44px;
     display:flex;flex-direction:column;justify-content:center;
@@ -366,7 +347,13 @@
 
   footer{text-align:center;color:var(--moss-dim);font-size:0.78rem;margin-top:30px;font-family:var(--font-mono);}
 </style>
+
+<!-- ─── KaTeX CDN ──────────────────────────────────────────────── -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 </head>
+
 <body>
 <div class="wrap">
 
@@ -523,7 +510,7 @@
 
   </div>
 
-  <footer>Study Buddy · powered by Groq</footer>
+  <footer>Study Buddy · powered by Groq (free tier)</footer>
 </div>
 
 <script>
@@ -531,9 +518,10 @@
    FRONTEND – calls the secure Vercel proxy
    ============================================================ */
 
-// ─── The proxy URL – change this after deploying your backend ──
+// ─── 🔑 CHANGE THIS URL to your Vercel proxy ─────────────────
 const PROXY_URL = 'https://study-buddy-olive-two.vercel.app/api/groq';
 
+// ─── API caller ─────────────────────────────────────────────────
 async function callAI(system, user) {
   const response = await fetch(PROXY_URL, {
     method: 'POST',
@@ -548,7 +536,7 @@ async function callAI(system, user) {
   return data.content.trim();
 }
 
-// ─── Helper functions ──────────────────────────────────────────
+// ─── Helper: extract JSON from AI response ────────────────────
 function extractJson(raw) {
   let cleaned = raw.trim().replace(/^```json/i, '').replace(/^```/, '').replace(/```$/, '').trim();
   const start = cleaned.indexOf('{');
@@ -557,6 +545,7 @@ function extractJson(raw) {
   return JSON.parse(cleaned);
 }
 
+// ─── Helper: render markdown to HTML ──────────────────────────
 function renderMarkdown(md) {
   let html = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   html = html
@@ -575,6 +564,7 @@ function renderMarkdown(md) {
   return html;
 }
 
+// ─── Helper: download .md file ────────────────────────────────
 function download(filename, text) {
   const blob = new Blob([text], { type: 'text/markdown' });
   const url = URL.createObjectURL(blob);
@@ -587,19 +577,43 @@ function download(filename, text) {
   URL.revokeObjectURL(url);
 }
 
+// ─── Helper: set busy state ────────────────────────────────────
 function setBusy(btn, statusEl, errorEl, busy) {
   btn.disabled = busy;
   statusEl.classList.toggle('show', busy);
   if (busy) errorEl.classList.remove('show');
 }
 
+// ─── Helper: show error ────────────────────────────────────────
 function showError(errorEl, msg) {
   errorEl.textContent = '⚠ ' + msg;
   errorEl.classList.add('show');
 }
 
+// ─── Helper: escape HTML ──────────────────────────────────────
 function escapeHtml(s) {
   return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ─── Helper: render math with KaTeX ───────────────────────────
+function renderMath(element) {
+  if (typeof renderMathInElement !== 'undefined') {
+    try {
+      renderMathInElement(element, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+    } catch (e) {
+      console.warn('Math rendering error:', e);
+    }
+  } else {
+    console.warn('KaTeX auto-render not available.');
+  }
 }
 
 // ─── Tab routing ────────────────────────────────────────────────
@@ -664,18 +678,30 @@ document.getElementById('explain-btn').addEventListener('click', async () => {
   const levelMap = {
     "Simple (ELI5)": "Explain this as if to a 10-year-old. Use very simple language, short sentences, no jargon.",
     "Intermediate": "Explain this clearly to a high-school or early college student new to the topic.",
-    "Advanced": "Explain this with technical depth suitable for an advanced student or professional, attach research papers,refrences and citation"
+    "Advanced": "Explain this with technical depth suitable for an advanced student or professional. At the end, include a short 'References' section with 3-5 key citations (author, year, title, and optionally journal/book). Keep each citation brief (one line). Do not say you couldn't include more – just provide what you have."
   };
   let extras = [];
   if (analogy) extras.push("Include one memorable real-world analogy.");
   if (example) extras.push("Include one short, concrete worked example.");
-  const system = "You are an expert tutor who explains complex ideas clearly. Use markdown with headers and bullet points where helpful. Keep the whole response under 350 words so it stays focused.";
+
+  // 🔥 KEY FIX: explicit LaTeX instructions with a concrete example
+  const system = `You are an expert tutor who explains complex ideas clearly. Use markdown with headers and bullet points where helpful.
+
+IMPORTANT – For any mathematical formulas, you MUST use LaTeX notation with proper delimiters:
+- Inline formulas: wrap with a single dollar sign, e.g. $E = mc^2$
+- Display equations: wrap with double dollar signs, e.g. $$\\int_0^\\infty e^{-x} dx = 1$$
+- Use standard LaTeX commands like \\frac, \\sqrt, \\pi, \\int, \\sum, etc.
+- For example, write $f = \\frac{1}{2\\pi\\sqrt{LC}}$ instead of f = 1/(2*pi*sqrt(LC)).
+
+Provide a thorough explanation, and if references are requested, include them concisely. Do not mention any limitations about length or character count – just produce the requested content.`;
+
   const user = levelMap[level] + "\n\nTopic: " + topic + "\n\n" + extras.join(' ');
 
   setBusy(document.getElementById('explain-btn'), statusEl, errorEl, true);
   try {
     const text = await callAI(system, user);
     outputEl.innerHTML = renderMarkdown(text);
+    setTimeout(() => renderMath(outputEl), 100);
     outputEl.classList.add('show');
     downloadEl.style.display = 'inline-block';
     downloadEl.onclick = () => download('explanation_' + topic.slice(0, 30).replace(/\s+/g, '_') + '.md', text);
@@ -709,13 +735,20 @@ document.getElementById('summarize-btn').addEventListener('click', async () => {
     "Medium": "Provide a moderately detailed summary covering the main ideas.",
     "Comprehensive": "Provide a thorough summary capturing important details without losing nuance, but stay under 350 words."
   };
-  const system = "You are a study assistant expert at distilling academic content into crisp, accurate summaries. Use markdown formatting.";
+  const system = `You are a study assistant expert at distilling academic content into crisp, accurate summaries. Use markdown formatting.
+
+IMPORTANT – For any mathematical formulas, you MUST use LaTeX notation with proper delimiters:
+- Inline: $...$ , e.g. $E = mc^2$
+- Display: $$...$$ , e.g. $$\\int_0^\\infty e^{-x} dx = 1$$
+- Use standard LaTeX commands like \\frac, \\sqrt, \\pi, etc.`;
+
   const user = styleMap[style] + " " + lengthMap[length] + "\n\nNotes to summarize:\n\n" + notes;
 
   setBusy(document.getElementById('summarize-btn'), statusEl, errorEl, true);
   try {
     const text = await callAI(system, user);
     outputEl.innerHTML = renderMarkdown(text);
+    setTimeout(() => renderMath(outputEl), 100);
     outputEl.classList.add('show');
     downloadEl.style.display = 'inline-block';
     downloadEl.onclick = () => download('summary.md', text);
@@ -744,9 +777,11 @@ document.getElementById('quiz-btn').addEventListener('click', async () => {
   const outputEl = document.getElementById('quiz-output');
   outputEl.innerHTML = '';
 
-  const system = 'You are a quiz generator. Return ONLY valid JSON, no other text, in this exact format: ' +
-    '{"questions": [{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "answer": "A", "explanation": "..."}]}. ' +
-    'The answer field must be just the letter. Keep each explanation under 15 words.';
+  const system = `You are a quiz generator. Return ONLY valid JSON, no other text, in this exact format:
+{"questions": [{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "answer": "A", "explanation": "..."}]}.
+The answer field must be just the letter. Keep each explanation under 15 words.
+Use LaTeX for math if needed, with $...$ delimiters.`;
+
   const user = 'Generate ' + numQ + ' ' + difficulty.toLowerCase() + '-difficulty multiple-choice questions based on this ' +
     (source === 'topic' ? 'topic' : 'set of notes') + ':\n\n' + input;
 
@@ -799,6 +834,7 @@ function renderQuiz() {
   }
   html += '</div>';
   outputEl.innerHTML = html;
+  setTimeout(() => renderMath(outputEl), 100);
 
   outputEl.querySelectorAll('.opt-btn').forEach(b => {
     b.addEventListener('click', () => {
@@ -831,8 +867,10 @@ document.getElementById('fc-btn').addEventListener('click', async () => {
   const outputEl = document.getElementById('fc-output');
 
   const detail = depth === 'Concise' ? 'Keep answers to one short sentence.' : 'Provide a fuller answer with a bit of context, 2-3 sentences.';
-  const system = 'You are a flashcard generator. Return ONLY valid JSON, no other text: ' +
-    '{"flashcards": [{"front": "question or term", "back": "answer or definition"}]}.';
+  const system = `You are a flashcard generator. Return ONLY valid JSON, no other text:
+{"flashcards": [{"front": "question or term", "back": "answer or definition"}]}.
+Use LaTeX for math if needed, with $...$ delimiters.`;
+
   const user = 'Generate ' + numCards + ' flashcards based on this ' + (source === 'topic' ? 'topic' : 'set of notes') + '. ' + detail + '\n\n' + input;
 
   setBusy(document.getElementById('fc-btn'), statusEl, errorEl, true);
@@ -868,6 +906,7 @@ function renderFlashcards() {
   html += '<button class="btn ghost small" id="fc-export">↓ Export deck (.md)</button>';
   html += '</div></div>';
   outputEl.innerHTML = html;
+  setTimeout(() => renderMath(outputEl), 100);
 
   document.getElementById('fc-card-el').addEventListener('click', () => { fcFlipped = !fcFlipped; renderFlashcards(); });
   document.getElementById('fc-flip').addEventListener('click', (e) => { e.stopPropagation(); fcFlipped = !fcFlipped; renderFlashcards(); });
