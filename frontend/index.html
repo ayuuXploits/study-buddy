@@ -366,6 +366,9 @@
 
   footer{text-align:center;color:var(--moss-dim);font-size:0.78rem;margin-top:30px;font-family:var(--font-mono);}
 </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="wrap">
@@ -669,15 +672,30 @@ document.getElementById('explain-btn').addEventListener('click', async () => {
   let extras = [];
   if (analogy) extras.push("Include one memorable real-world analogy.");
   if (example) extras.push("Include one short, concrete worked example.");
-  const system = "You are an expert tutor who explains complex ideas clearly. Use markdown with headers and bullet points where helpful. Provide a thorough explanation, and if references are requested, include them concisely. Do not mention any limitations about length or character count – just produce the requested content.";
+  const system = "You are an expert tutor who explains complex ideas clearly. Use markdown with headers and bullet points where helpful. For any mathematical formulas, use LaTeX notation: inline with `$...$` and display equations with `$$...$$`. Provide a thorough explanation, and if references are requested, include them concisely. Do not mention any limitations about length or character count – just produce the requested content.";
   const user = levelMap[level] + "\n\nTopic: " + topic + "\n\n" + extras.join(' ');
 
   setBusy(document.getElementById('explain-btn'), statusEl, errorEl, true);
   try {
-    const text = await callAI(system, user);
-    outputEl.innerHTML = renderMarkdown(text);
-    outputEl.classList.add('show');
-    downloadEl.style.display = 'inline-block';
+  const text = await callAI(system, user);
+  outputEl.innerHTML = renderMarkdown(text);
+  
+  // Auto‑render math formulas
+  if (window.renderMathInElement) {
+    renderMathInElement(outputEl, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ],
+      throwOnError: false
+    });
+  }
+  
+  outputEl.classList.add('show');
+  downloadEl.style.display = 'inline-block';
+  // ...
     downloadEl.onclick = () => download('explanation_' + topic.slice(0, 30).replace(/\s+/g, '_') + '.md', text);
   } catch (e) {
     showError(errorEl, e.message || "Something went wrong.");
