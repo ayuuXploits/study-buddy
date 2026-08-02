@@ -662,10 +662,10 @@ document.getElementById('explain-btn').addEventListener('click', async () => {
   downloadEl.style.display = 'none';
 
   const levelMap = {
-    "Simple (ELI5)": "Explain this as if to a 10-year-old. Use very simple language, short sentences, no jargon.",
-    "Intermediate": "Explain this clearly to a high-school or early college student new to the topic.",
-    "Advanced": "Explain this with technical depth suitable for an advanced student or professional."
-  };
+  "Simple (ELI5)": "Explain this as if to a 10-year-old. Use very simple language, short sentences, no jargon.",
+  "Intermediate": "Explain this clearly to a high-school or early college student new to the topic.",
+  "Advanced": "Explain this with technical depth suitable for an advanced student or professional. At the end, include a short 'References' section with 3-5 key citations (author, year, title, and optionally journal/book). Keep each citation brief (one line). Do not say you couldn't include more – just provide what you have."
+};
   let extras = [];
   if (analogy) extras.push("Include one memorable real-world analogy.");
   if (example) extras.push("Include one short, concrete worked example.");
