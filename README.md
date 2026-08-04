@@ -86,7 +86,9 @@ No bundler. No `npm install` for the frontend. Everything loads straight from on
 
 ```
 Study-Buddy/
-├── index.html   # Entire app — markup, styles, and logic
+├── api
+    └──
+├── frontend
 ├── README.md
 ├── LICENSE
 └── .gitignore
