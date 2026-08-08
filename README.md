@@ -93,6 +93,7 @@ Study-Buddy/
 ├── README.md
 ├── LICENSE
 └── .gitignore
+
 ```
 
 ---
