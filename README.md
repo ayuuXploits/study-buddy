@@ -85,6 +85,7 @@ No bundler. No `npm install` for the frontend. Everything loads straight from on
 ## 🗂️ Project Structure
 
 ```
+
 Study-Buddy/
 ├── api
     └──
