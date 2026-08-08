@@ -119,6 +119,7 @@ cd Study-Buddy
 
 ```js
 const PROXY_URL = 'https://study-buddy-olive-two.vercel.app/api/groq';
+
 ```
 
 Deploy your own serverless function (Vercel, Netlify, Cloudflare Workers, etc.) that:
