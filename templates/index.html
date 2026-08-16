@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="glass" data-mode="dark">
+<html lang="en" data-theme="academia" data-mode="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -314,6 +314,80 @@
       --letter-spacing: 0.06em;
     }
 
+    /* 5. Studio — clean modern minimal SaaS look (favorite) */
+    [data-theme="studio"] {
+      --bg-0: #0d0f14;
+      --bg-1: #14171e;
+      --wood: #14171e;
+      --brass: #6366f1;
+      --brass-bright: #818cf8;
+      --brass-dim: #4f46e5;
+      --parchment: #f7f8fb;
+      --parchment-dim: #e7e9f0;
+      --parchment-shadow: #c7cad6;
+      --ink: #10121a;
+      --moss: #9aa1b1;
+      --moss-dim: #6b7280;
+      --leather: #ef4444;
+      --leather-bright: #f87171;
+      --sage: #22c55e;
+      --font-display: 'Inter', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --bg-body: linear-gradient(180deg, #0d0f14, #14171e 60%);
+      --panel-bg: #14161d;
+      --panel-text: #e7e9f0;
+      --panel-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 16px 40px -20px rgba(0,0,0,0.6);
+      --input-bg: #1a1d26;
+      --input-border: #262a35;
+      --btn-bg: #1a1d26;
+      --btn-text: #d5d8e2;
+      --btn-primary-bg: #6366f1;
+      --btn-primary-text: #ffffff;
+      --choice-bg: #1a1d26;
+      --choice-border: #262a35;
+      --choice-selected-bg: #6366f1;
+      --choice-selected-text: #ffffff;
+      --status-color: #818cf8;
+      --error-color: #ef4444;
+      --output-border: #262a35;
+      --quiz-bg: #14161d;
+      --quiz-border: #262a35;
+      --opt-bg: #1a1d26;
+      --opt-border: #262a35;
+      --opt-selected-bg: rgba(99,102,241,0.16);
+      --opt-correct-bg: rgba(34,197,94,0.16);
+      --opt-incorrect-bg: rgba(239,68,68,0.16);
+      --fc-bg: #14161d;
+      --fc-border: #262a35;
+      --fc-shadow: 0 16px 40px -20px rgba(0,0,0,0.6);
+      --fc-rule: #262a35;
+      --spine-active-shadow: 0 6px 16px -6px rgba(99,102,241,0.45);
+      --footer-color: #6b7280;
+      --glass-bg: #1a1d26;
+      --glass-border: #262a35;
+      --glow-color: rgba(99,102,241,0.14);
+      --spine-rule: transparent;
+      --spine-explain: #1a1d26;
+      --spine-summarize: #1a1d26;
+      --spine-quiz: #1a1d26;
+      --spine-flashcards: #1a1d26;
+      --spine-pomodoro: #1a1d26;
+      --spine-reminder: #1a1d26;
+      --spine-streak: #1a1d26;
+      --spine-settings: #1a1d26;
+      /* layout */
+      --border-radius: 10px;
+      --card-padding: 32px;
+      --spine-height: 44px;
+      --spine-width: auto;
+      --shadow-offset: 0px;
+      --shadow-blur: 30px;
+      --font-weight-heading: 600;
+      --font-weight-body: 400;
+      --letter-spacing: 0em;
+    }
+
     /* ----- LIGHT / DARK mode overrides (only for the chosen theme) ----- */
     [data-mode="light"] {
       /* base light – overridden per theme below */
@@ -412,6 +486,44 @@
       --choice-border: #3d3a34;
       --choice-selected-bg: #b71c1c;
       --choice-selected-text: #f5f3f0;
+    }
+
+    [data-theme="studio"][data-mode="light"] {
+      --bg-body: #f4f5f8;
+      --panel-bg: #ffffff;
+      --panel-text: #12141a;
+      --panel-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 10px 30px -18px rgba(16,18,26,0.18), 0 0 0 1px #e7e9f0;
+      --input-bg: #ffffff;
+      --input-border: #dde0e8;
+      --btn-bg: #f0f1f5;
+      --btn-text: #12141a;
+      --btn-primary-bg: #6366f1;
+      --btn-primary-text: #ffffff;
+      --choice-bg: #ffffff;
+      --choice-border: #dde0e8;
+      --choice-selected-bg: #6366f1;
+      --choice-selected-text: #ffffff;
+      --status-color: #4f46e5;
+      --output-border: #e7e9f0;
+      --quiz-bg: #ffffff;
+      --quiz-border: #e7e9f0;
+      --opt-bg: #ffffff;
+      --opt-border: #e7e9f0;
+      --fc-bg: #ffffff;
+      --fc-border: #e7e9f0;
+      --fc-shadow: 0 10px 30px -18px rgba(16,18,26,0.18), 0 0 0 1px #e7e9f0;
+      --fc-rule: #e7e9f0;
+      --footer-color: #8b90a0;
+      --glass-bg: #ffffff;
+      --glass-border: #e7e9f0;
+      --spine-explain: #f0f1f5;
+      --spine-summarize: #f0f1f5;
+      --spine-quiz: #f0f1f5;
+      --spine-flashcards: #f0f1f5;
+      --spine-pomodoro: #f0f1f5;
+      --spine-reminder: #f0f1f5;
+      --spine-streak: #f0f1f5;
+      --spine-settings: #f0f1f5;
     }
 
     /* ----- LIQUID GLASS AMBIENT ORBS (drifting colour behind the frosted panels) ----- */
@@ -1196,6 +1308,80 @@
     [data-theme="brutal"] .nameplate h1 { letter-spacing: 0.01em; }
     [data-theme="brutal"] .panel h2 { text-transform: uppercase; letter-spacing: 0.02em; }
 
+    /* Studio: flat modern pill-tab nav, no skeuomorphism at all */
+    [data-theme="studio"] .nameplate::before, [data-theme="studio"] .nameplate::after {
+      display: none;
+    }
+    [data-theme="studio"] .nameplate h1, [data-theme="studio"] .spine .spine-label {
+      font-variant: normal;
+      text-transform: none;
+    }
+    [data-theme="studio"] .nameplate {
+      border: 1px solid var(--input-border);
+      box-shadow: none;
+    }
+    [data-theme="studio"] .lamp-glow { opacity: 0.5; }
+    [data-theme="studio"] .panel-shell {
+      border: 1px solid var(--input-border);
+    }
+    [data-theme="studio"] .panel h2 { font-weight: 600; letter-spacing: -0.01em; }
+    [data-theme="studio"] .shelf {
+      justify-content: flex-start;
+      max-width: 860px;
+      margin: 28px auto 0;
+      gap: 8px;
+    }
+    [data-theme="studio"] .spine {
+      writing-mode: horizontal-tb;
+      flex-direction: row;
+      height: 42px;
+      min-width: unset;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--input-border);
+      top: 0;
+      filter: none;
+      box-shadow: none;
+    }
+    [data-theme="studio"] .spine:hover {
+      filter: none;
+      transform: none;
+      background: linear-gradient(90deg, rgba(0,0,0,0.25), transparent 10%, transparent 90%, rgba(0,0,0,0.25)), #20232d;
+      border-color: #333747;
+    }
+    [data-theme="studio"] .spine.active {
+      background: linear-gradient(90deg, rgba(0,0,0,0.25), transparent 10%, transparent 90%, rgba(0,0,0,0.25)), var(--brass-dim);
+      border-color: var(--brass);
+      box-shadow: var(--spine-active-shadow);
+    }
+    [data-theme="studio"] .spine .spine-label {
+      writing-mode: horizontal-tb;
+      transform: none;
+      letter-spacing: 0;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--moss);
+      text-shadow: none;
+    }
+    [data-theme="studio"] .spine.active .spine-label { color: #ffffff; }
+    [data-theme="studio"] .spine::after { display: none; }
+    @media (max-width: 560px) {
+      [data-theme="studio"] .spine { height: 42px; flex: unset; }
+    }
+    [data-theme="studio"] .btn { border-radius: 8px; }
+    [data-theme="studio"] .btn.primary { box-shadow: 0 4px 14px -6px rgba(99,102,241,0.5); }
+    [data-theme="studio"] input[type="text"], [data-theme="studio"] textarea, [data-theme="studio"] select {
+      border-radius: 8px;
+    }
+    [data-theme="studio"] input:focus, [data-theme="studio"] textarea:focus, [data-theme="studio"] select:focus {
+      transform: none;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+      border-color: var(--brass);
+    }
+    [data-theme="studio"] .choice { border-radius: 8px; }
+    [data-theme="studio"] .theme-card { border-radius: 10px; }
+    [data-theme="studio"] .fc-face { border-radius: 12px; }
+
     /* Retro: vintage double-frame badge + typewriter mono accents */
     [data-theme="retro"] { --font-mono: 'Space Mono', monospace; }
     [data-theme="retro"] .nameplate {
@@ -1506,7 +1692,7 @@
       <div style="margin-bottom: 24px;">
         <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px;">Theme</h3>
         <div class="theme-grid" id="theme-grid">
-          <div class="theme-card" data-theme="academia">
+          <div class="theme-card active" data-theme="academia">
             <span class="preview">📚</span>
             Academia
           </div>
@@ -1514,13 +1700,17 @@
             <span class="preview">🕰️</span>
             Retro
           </div>
-          <div class="theme-card active" data-theme="glass">
+          <div class="theme-card" data-theme="glass">
             <span class="preview">🔮</span>
             Liquid Glass
           </div>
           <div class="theme-card" data-theme="brutal">
             <span class="preview">🧱</span>
             Brutalist
+          </div>
+          <div class="theme-card" data-theme="studio">
+            <span class="preview">✨</span>
+            Studio
           </div>
         </div>
       </div>
@@ -1720,7 +1910,7 @@ function setMode(mode) {
 }
 
 // Load saved preferences
-const savedTheme = localStorage.getItem('theme') || 'glass';
+const savedTheme = localStorage.getItem('theme') || 'academia';
 const savedMode = localStorage.getItem('mode') || 'dark';
 setTheme(savedTheme);
 setMode(savedMode);
