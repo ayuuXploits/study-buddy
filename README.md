@@ -104,6 +104,9 @@ No bundler. No frontend build step. The whole UI loads straight from one `.html`
 ```
 
 Study-Buddy/
+├──.github
+│   └── workflows
+│       └── keep-alive.yml 
 ├── docs
 │   └── study-buddy.png
 │       ├──IMG1.png
@@ -112,6 +115,7 @@ Study-Buddy/
 │       └──IMG4.png
 ├── templates
 │   └── index.html
+├── .gitattributes
 ├── README.md
 ├── app.py
 ├── requirements.txt
