@@ -163,6 +163,7 @@ gunicorn
 ```bash
 export GROQ_API_KEY=your_key_here     # macOS/Linux
 set GROQ_API_KEY=your_key_here        # Windows (cmd)
+
 ```
 
 `app.py` reads it from the environment and never hardcodes it — the same variable name works locally and on Render.
