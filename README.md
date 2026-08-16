@@ -28,7 +28,7 @@
 [![Groq](https://img.shields.io/badge/AI-Groq-00A5E0?style=for-the-badge)](https://groq.com)
 [![Render](https://img.shields.io/badge/Hosted_on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com)
 
-[**📖 Try It**](https://ayuuxploits.github.io/study-buddy-test/) &nbsp;·&nbsp; [**🐛 Report Bug**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=bug&title=%5BBug%5D+) &nbsp;·&nbsp; [**✨ Request Feature**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=enhancement&title=%5BFeature%5D+)
+[**📖 Try It**](https://study-buddy-3xji.onrender.com/) &nbsp;·&nbsp; [**🐛 Report Bug**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=bug&title=%5BBug%5D+) &nbsp;·&nbsp; [**✨ Request Feature**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=enhancement&title=%5BFeature%5D+)
 
 <br/>
 
