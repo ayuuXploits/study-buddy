@@ -109,7 +109,7 @@ Study-Buddy/
 │       ├──IMG1.png
 │       ├──IMG2.png
 │       ├──IMG3.png
-│       └── IMG4.png
+│       └──IMG4.png
 ├── templates
 │   └── index.html
 ├── README.md
