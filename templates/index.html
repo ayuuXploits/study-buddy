@@ -74,6 +74,8 @@
       --spine-settings: #3a3a3a;
       --spine-dashboard: #4a6a7a;
       --spine-library: #5c4a3a;
+      --spine-mindmap: #3a5c4a;
+      --spine-mindmap: #3a5c4a;
       /* layout */
       --border-radius: 6px;
       --card-padding: 36px;
@@ -154,6 +156,8 @@
       --spine-settings: #33291d;
       --spine-dashboard: #3a5a6a;
       --spine-library: #5a3a2a;
+      --spine-mindmap: #3f5a30;
+      --spine-mindmap: #3a6a4a;
       /* layout */
       --border-radius: 12px;
       --card-padding: 40px;
@@ -234,6 +238,8 @@
       --spine-settings: #556095;
       --spine-dashboard: #2f9ac7;
       --spine-library: #a86fd6;
+      --spine-mindmap: #4fc78a;
+      --spine-mindmap: #4fd68f;
       /* layout */
       --border-radius: 22px;
       --card-padding: 34px;
@@ -310,6 +316,8 @@
       --spine-settings: #1e1e1e;
       --spine-dashboard: #1e1e1e;
       --spine-library: #b71c1c;
+      --spine-mindmap: #1e1e1e;
+      --spine-mindmap: #1e1e1e;
       /* layout */
       --border-radius: 0px;
       --card-padding: 30px;
@@ -386,6 +394,8 @@
       --spine-settings: #1a1d26;
       --spine-dashboard: #1a1d26;
       --spine-library: #1a1d26;
+      --spine-mindmap: #1a1d26;
+      --spine-mindmap: #1a1d26;
       /* layout */
       --border-radius: 10px;
       --card-padding: 32px;
@@ -536,6 +546,8 @@
       --spine-settings: #f0f1f5;
       --spine-dashboard: #f0f1f5;
       --spine-library: #f0f1f5;
+      --spine-mindmap: #f0f1f5;
+      --spine-mindmap: #f0f1f5;
     }
 
     /* ----- LIQUID GLASS AMBIENT ORBS (drifting colour behind the frosted panels) ----- */
@@ -805,6 +817,7 @@
     .spine[data-tab="streak"] { --spine-color: var(--spine-streak); }
     .spine[data-tab="dashboard"] { --spine-color: var(--spine-dashboard); }
     .spine[data-tab="library"] { --spine-color: var(--spine-library); }
+    .spine[data-tab="mindmap"] { --spine-color: var(--spine-mindmap); }
     .spine[data-tab="settings"] { --spine-color: var(--spine-settings); }
     @media (max-width:560px) {
       .shelf { gap: 4px; }
@@ -1701,6 +1714,26 @@
       color: var(--choice-selected-text);
       margin-right: 6px;
     }
+
+    /* ----- MINDMAP ----- */
+    .mm-wrap { margin-top: 24px; }
+    .mm-canvas-shell {
+      border: 1.5px solid var(--output-border);
+      border-radius: var(--border-radius);
+      background: var(--input-bg);
+      padding: 10px;
+      overflow: auto;
+      transition: background 0.3s, border 0.3s, border-radius 0.3s;
+    }
+    .mm-canvas-shell svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      min-width: 640px;
+    }
+    .mm-controls { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .mm-canvas-shell.mini { padding: 4px; }
+    .mm-canvas-shell.mini svg { min-width: unset; }
   </style>
 
   <!-- KaTeX CDN for math rendering -->
@@ -1726,6 +1759,7 @@
     <div class="spine" data-tab="summarize"><span class="spine-label">Summarize</span></div>
     <div class="spine" data-tab="quiz"><span class="spine-label">Quiz</span></div>
     <div class="spine" data-tab="flashcards"><span class="spine-label">Flashcards</span></div>
+    <div class="spine" data-tab="mindmap"><span class="spine-label">🧠 Mind Map</span></div>
     <div class="spine" data-tab="pomodoro"><span class="spine-label">🍅 Pomodoro</span></div>
     <div class="spine" data-tab="reminder"><span class="spine-label">📌 Reminder</span></div>
     <div class="spine" data-tab="streak"><span class="spine-label">🔥 Streak</span></div>
@@ -1893,6 +1927,47 @@
       <div id="fc-output"></div>
     </div>
 
+    <!-- MINDMAP -->
+    <div class="panel" id="panel-mindmap">
+      <h2>🧠 Mind map</h2>
+      <p class="sub">Turn a topic or your notes into a visual web of connected ideas.</p>
+      <div class="field">
+        <label class="field-label">Based on</label>
+        <div class="choice-group" id="mm-source">
+          <div class="choice selected" data-val="topic">Topic name</div>
+          <div class="choice" data-val="notes">My notes</div>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" id="mm-input-label">Topic</label>
+        <input type="text" id="mm-input-text" placeholder="e.g. The Cell, The French Revolution, Machine Learning…">
+        <textarea id="mm-input-notes" placeholder="Paste study material here…" style="display:none;"></textarea>
+        <div class="input-tools">
+          <button type="button" class="tool-btn" id="mm-mic" title="Speak your topic or notes" aria-label="Voice input">🎤</button>
+          <button type="button" class="tool-btn" id="mm-cam" title="Upload a photo of a question" aria-label="Upload a photo of a question">📷</button>
+          <input type="file" id="mm-file" accept="image/*" capture="environment" style="display:none;">
+          <span class="tool-status" id="mm-tool-status"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label class="field-label">Main branches: <span class="slider-val" id="mm-num-val">5</span></label>
+          <div class="slider-row"><input type="range" id="mm-num" min="3" max="6" value="5"></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Detail level</label>
+          <select id="mm-depth">
+            <option selected>Concise</option>
+            <option>Detailed</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn primary" id="mm-btn">Generate mind map</button>
+      <div class="status-line" id="mm-status">Branching out ideas<span class="loader-dots"></span></div>
+      <div class="error-line" id="mm-error"></div>
+      <div id="mm-output"></div>
+    </div>
+
     <!-- POMODORO -->
     <div class="panel" id="panel-pomodoro">
       <h2>🍅 Pomodoro Timer</h2>
@@ -1966,6 +2041,11 @@
           <div class="stat-sub" id="dash-cards-reviewed">0 cards reviewed</div>
         </div>
         <div class="stat-card">
+          <div class="stat-label">Mind maps</div>
+          <div class="stat-value" id="dash-mindmaps">0</div>
+          <div class="stat-sub">generated</div>
+        </div>
+        <div class="stat-card">
           <div class="stat-label">Current streak</div>
           <div class="stat-value" id="dash-current-streak">0</div>
           <div class="stat-sub">days in a row</div>
@@ -1997,6 +2077,7 @@
           <div class="choice" data-val="summarize">Summaries</div>
           <div class="choice" data-val="quiz">Quizzes</div>
           <div class="choice" data-val="flashcards">Flashcards</div>
+          <div class="choice" data-val="mindmap">Mind maps</div>
         </div>
         <input type="text" id="lib-search" placeholder="Search your library…">
       </div>
@@ -2193,7 +2274,7 @@ function wireChoiceGroup(id) {
     });
   });
 }
-['summarize-style','summarize-length','quiz-source','fc-source','lib-filter'].forEach(wireChoiceGroup);
+['summarize-style','summarize-length','quiz-source','fc-source','mm-source','lib-filter'].forEach(wireChoiceGroup);
 
 function selectedChoice(id) {
   return document.querySelector('#' + id + ' .choice.selected').dataset.val;
@@ -2209,12 +2290,16 @@ function wireSourceToggle(groupId, textId, notesId, labelId) {
 }
 wireSourceToggle('quiz-source', 'quiz-input-text', 'quiz-input-notes', 'quiz-input-label');
 wireSourceToggle('fc-source', 'fc-input-text', 'fc-input-notes', 'fc-input-label');
+wireSourceToggle('mm-source', 'mm-input-text', 'mm-input-notes', 'mm-input-label');
 
 document.getElementById('quiz-num').addEventListener('input', e => {
   document.getElementById('quiz-num-val').textContent = e.target.value;
 });
 document.getElementById('fc-num').addEventListener('input', e => {
   document.getElementById('fc-num-val').textContent = e.target.value;
+});
+document.getElementById('mm-num').addEventListener('input', e => {
+  document.getElementById('mm-num-val').textContent = e.target.value;
 });
 
 // ─── Theme Switcher ─────────────────────────────────────────────
@@ -2292,6 +2377,9 @@ function libBodyHtml(entry) {
     const cards = entry.data.flashcards || [];
     return cards.map((c, i) => '<p><strong>' + (i + 1) + '. ' + escapeHtml(c.front) + '</strong><br>' + escapeHtml(c.back) + '</p>').join('');
   }
+  if (entry.type === 'mindmap') {
+    return '<div class="mm-canvas-shell mini">' + generateMindmapSVG(entry.data) + '</div>';
+  }
   return renderMarkdown(entry.data || '');
 }
 function renderLibrary() {
@@ -2303,10 +2391,10 @@ function renderLibrary() {
   if (q) lib = lib.filter(e => (e.title + ' ' + e.meta).toLowerCase().includes(q));
 
   if (!lib.length) {
-    listEl.innerHTML = '<div class="dash-empty">Nothing saved here yet — anything you explain, summarize, quiz, or make flashcards from will show up in your library.</div>';
+    listEl.innerHTML = '<div class="dash-empty">Nothing saved here yet — anything you explain, summarize, quiz, make flashcards from, or map out will show up in your library.</div>';
     return;
   }
-  const typeLabel = { explain: 'Explain', summarize: 'Summary', quiz: 'Quiz', flashcards: 'Flashcards' };
+  const typeLabel = { explain: 'Explain', summarize: 'Summary', quiz: 'Quiz', flashcards: 'Flashcards', mindmap: 'Mind map' };
   listEl.innerHTML = lib.map(entry => `
     <div class="lib-item" data-id="${entry.id}">
       <div class="lib-item-head">
@@ -2363,10 +2451,11 @@ function getDashData() {
       quizScoreSum: 0,
       deckssMade: 0,
       cardsReviewed: 0,
+      mindmapsMade: 0,
       dailySeconds: {}   // { 'YYYY-MM-DD': seconds }
     };
   } catch (e) {
-    return { focusSeconds: 0, sessions: 0, quizzesTaken: 0, quizScoreSum: 0, deckssMade: 0, cardsReviewed: 0, dailySeconds: {} };
+    return { focusSeconds: 0, sessions: 0, quizzesTaken: 0, quizScoreSum: 0, deckssMade: 0, cardsReviewed: 0, mindmapsMade: 0, dailySeconds: {} };
   }
 }
 function saveDashData(d) { localStorage.setItem('dashData', JSON.stringify(d)); }
@@ -2392,6 +2481,11 @@ function logDeckGenerated(cardCount) {
   const d = getDashData();
   d.deckssMade += 1;
   d.cardsReviewed += cardCount;
+  saveDashData(d);
+}
+function logMindmapGenerated() {
+  const d = getDashData();
+  d.mindmapsMade = (d.mindmapsMade || 0) + 1;
   saveDashData(d);
 }
 function fmtHM(totalSeconds) {
@@ -2423,6 +2517,7 @@ function renderDashboard() {
     : 'avg score —';
   document.getElementById('dash-decks').textContent = d.deckssMade;
   document.getElementById('dash-cards-reviewed').textContent = d.cardsReviewed + ' cards reviewed';
+  document.getElementById('dash-mindmaps').textContent = d.mindmapsMade || 0;
 
   const streaks = computeStreaks();
   document.getElementById('dash-current-streak').textContent = streaks.current;
@@ -2742,6 +2837,177 @@ function renderFlashcards() {
   });
 }
 
+// ─── MINDMAP ─────────────────────────────────────────────────────
+let mmData = null;
+
+function wrapMmLabel(text, maxChars) {
+  const words = (text || '').split(/\s+/).filter(Boolean);
+  const lines = [];
+  let cur = '';
+  words.forEach(w => {
+    const candidate = (cur ? cur + ' ' : '') + w;
+    if (candidate.length > maxChars && cur) {
+      lines.push(cur);
+      cur = w;
+    } else {
+      cur = candidate;
+    }
+  });
+  if (cur) lines.push(cur);
+  return lines.slice(0, 3);
+}
+
+function mmSvgNode(x, y, label, opts) {
+  opts = opts || {};
+  const fontSize = opts.fontSize || 13;
+  const maxChars = opts.maxChars || 16;
+  const lines = wrapMmLabel(label, maxChars);
+  const lineHeight = fontSize * 1.28;
+  const charW = fontSize * 0.58;
+  const longest = lines.reduce((m, l) => Math.max(m, l.length), 1);
+  const w = Math.max(opts.minWidth || 70, longest * charW + 26);
+  const h = lines.length * lineHeight + 16;
+  const rx = opts.rx != null ? opts.rx : 10;
+  const startY = y - ((lines.length - 1) * lineHeight) / 2 + fontSize * 0.35;
+  let g = '<g>';
+  g += `<rect x="${(x - w / 2).toFixed(1)}" y="${(y - h / 2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="${rx}" fill="${opts.fill}" stroke="${opts.stroke}" stroke-width="${opts.strokeWidth || 1.6}" />`;
+  lines.forEach((line, i) => {
+    g += `<text x="${x.toFixed(1)}" y="${(startY + i * lineHeight).toFixed(1)}" text-anchor="middle" font-size="${fontSize}" font-family="${opts.fontFamily || 'inherit'}" font-weight="${opts.fontWeight || 500}" fill="${opts.textColor}">${escapeHtml(line)}</text>`;
+  });
+  g += '</g>';
+  return { svg: g, w, h };
+}
+
+const MM_PALETTE = ['var(--brass-dim)', 'var(--sage)', 'var(--leather)', 'var(--moss-dim)', 'var(--brass-bright)', 'var(--leather-bright)'];
+
+function generateMindmapSVG(data) {
+  if (!data || !data.central) return '<div class="dash-empty">Nothing to show.</div>';
+  const branches = (data.branches || []).slice(0, 6);
+  const width = 1000, height = 720;
+  const cx = width / 2, cy = height / 2;
+  const branchCount = Math.max(branches.length, 1);
+  const branchRadius = branchCount <= 4 ? 230 : 260;
+  const childRadius = 130;
+
+  let linesSvg = '';
+  let nodesSvg = '';
+
+  const central = mmSvgNode(cx, cy, data.central, {
+    fontSize: 15, maxChars: 14, minWidth: 120,
+    fill: 'var(--btn-bg)', stroke: 'var(--brass-dim)', strokeWidth: 2,
+    textColor: 'var(--btn-text)', fontWeight: 700, rx: 16
+  });
+  nodesSvg += central.svg;
+
+  branches.forEach((branch, i) => {
+    const angle = (i / branchCount) * 2 * Math.PI - Math.PI / 2;
+    const bx = cx + branchRadius * Math.cos(angle);
+    const by = cy + branchRadius * Math.sin(angle);
+    const color = MM_PALETTE[i % MM_PALETTE.length];
+
+    linesSvg += `<line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="${color}" stroke-width="2.4" stroke-opacity="0.75" />`;
+
+    const branchNode = mmSvgNode(bx, by, branch.label || '', {
+      fontSize: 13, maxChars: 15, minWidth: 90,
+      fill: 'var(--input-bg)', stroke: color, strokeWidth: 2,
+      textColor: 'var(--panel-text)', fontWeight: 600, rx: 10
+    });
+    nodesSvg += branchNode.svg;
+
+    const children = (branch.children || []).slice(0, 5);
+    const childCount = children.length;
+    const spreadDeg = childCount > 1 ? Math.min(56, (childCount - 1) * 20) : 0;
+    children.forEach((child, j) => {
+      const offDeg = childCount > 1 ? (-spreadDeg / 2 + j * (spreadDeg / (childCount - 1))) : 0;
+      const childAngle = angle + (offDeg * Math.PI / 180);
+      const chx = bx + childRadius * Math.cos(childAngle);
+      const chy = by + childRadius * Math.sin(childAngle);
+
+      linesSvg += `<line x1="${bx.toFixed(1)}" y1="${by.toFixed(1)}" x2="${chx.toFixed(1)}" y2="${chy.toFixed(1)}" stroke="${color}" stroke-width="1.4" stroke-opacity="0.5" />`;
+
+      const childNode = mmSvgNode(chx, chy, child, {
+        fontSize: 11, maxChars: 17, minWidth: 60,
+        fill: 'var(--panel-bg)', stroke: color, strokeWidth: 1.2,
+        textColor: 'var(--moss-dim)', fontWeight: 400, rx: 8
+      });
+      nodesSvg += childNode.svg;
+    });
+  });
+
+  return `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" font-family="inherit">${linesSvg}${nodesSvg}</svg>`;
+}
+
+function mindmapToOutline(data) {
+  if (!data || !data.central) return '';
+  let md = '# ' + data.central + '\n\n';
+  (data.branches || []).forEach(b => {
+    md += '- **' + b.label + '**\n';
+    (b.children || []).forEach(c => { md += '  - ' + c + '\n'; });
+  });
+  return md;
+}
+
+document.getElementById('mm-btn').addEventListener('click', async () => {
+  const source = selectedChoice('mm-source');
+  const input = source === 'topic'
+    ? document.getElementById('mm-input-text').value.trim()
+    : document.getElementById('mm-input-notes').value.trim();
+  if (!input) return;
+  const numBranches = document.getElementById('mm-num').value;
+  const depth = document.getElementById('mm-depth').value;
+  const statusEl = document.getElementById('mm-status');
+  const errorEl = document.getElementById('mm-error');
+  const outputEl = document.getElementById('mm-output');
+  outputEl.innerHTML = '';
+
+  const detail = depth === 'Concise'
+    ? 'Keep every label to at most 4 words.'
+    : 'Labels can be up to 7 words, a little more descriptive.';
+
+  const system = `You are a mind-map generator. Return ONLY valid JSON, no other text, in this exact format:
+{"central": "short central topic (max 4 words)", "branches": [{"label": "short branch label", "children": ["short child idea", "short child idea"]}]}.
+Each branch should have 2 to 4 children. ${detail} Do not use markdown, numbering, or punctuation like colons in labels.`;
+
+  const user = 'Create a mind map with ' + numBranches + ' main branches for this ' +
+    (source === 'topic' ? 'topic' : 'set of notes') + ':\n\n' + input;
+
+  setBusy(document.getElementById('mm-btn'), statusEl, errorEl, true);
+  try {
+    const raw = await callAI(system, user);
+    const data = extractJson(raw);
+    mmData = data;
+    const svg = generateMindmapSVG(data);
+    outputEl.innerHTML = `
+      <div class="mm-wrap">
+        <div class="mm-canvas-shell">${svg}</div>
+        <div class="mm-controls">
+          <button class="btn ghost small" id="mm-download-svg">↓ Download mind map (.svg)</button>
+          <button class="btn ghost small" id="mm-download-outline">↓ Export outline (.md)</button>
+        </div>
+      </div>`;
+    document.getElementById('mm-download-svg').addEventListener('click', () => {
+      const svgEl = outputEl.querySelector('svg');
+      const serialized = new XMLSerializer().serializeToString(svgEl);
+      download('mindmap.svg', '<?xml version="1.0" encoding="UTF-8"?>\n' + serialized);
+    });
+    document.getElementById('mm-download-outline').addEventListener('click', () => {
+      download('mindmap_outline.md', mindmapToOutline(data));
+    });
+    outputEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    logMindmapGenerated();
+    saveLibraryEntry({
+      type: 'mindmap',
+      title: data.central || input.slice(0, 48),
+      meta: (data.branches || []).length + ' branches · ' + depth,
+      data: data
+    });
+  } catch (e) {
+    showError(errorEl, "Couldn't generate the mind map — try again. (" + (e.message || '') + ")");
+  } finally {
+    setBusy(document.getElementById('mm-btn'), statusEl, errorEl, false);
+  }
+});
+
 // ─── POMODORO ──────────────────────────────────────────────────
 let pomodoroInterval = null;
 let pomodoroSeconds = 25 * 60;
@@ -3040,6 +3306,9 @@ wireCamera('quiz-cam', 'quiz-file', activeFieldOf('quiz-input-text', 'quiz-input
 
 wireMic('fc-mic', activeFieldOf('fc-input-text', 'fc-input-notes'), document.getElementById('fc-tool-status'));
 wireCamera('fc-cam', 'fc-file', activeFieldOf('fc-input-text', 'fc-input-notes'), document.getElementById('fc-tool-status'));
+
+wireMic('mm-mic', activeFieldOf('mm-input-text', 'mm-input-notes'), document.getElementById('mm-tool-status'));
+wireCamera('mm-cam', 'mm-file', activeFieldOf('mm-input-text', 'mm-input-notes'), document.getElementById('mm-tool-status'));
 
 // Initial dashboard/library render (in case those tabs are the ones ever opened first)
 renderDashboard();
