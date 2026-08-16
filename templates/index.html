@@ -882,6 +882,58 @@
       color: var(--choice-selected-text);
     }
     .checkbox-row { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
+
+    /* ----- Voice + camera input tools ----- */
+    .input-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .tool-btn {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--input-border);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+    .tool-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+      border-color: var(--brass-dim);
+    }
+    .tool-btn:active:not(:disabled) { transform: scale(0.94); }
+    .tool-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .tool-btn.recording {
+      background: var(--error-color);
+      border-color: var(--error-color);
+      color: #fff;
+      animation: toolPulse 1.1s ease-in-out infinite;
+    }
+    .tool-btn.busy { opacity: 0.6; cursor: wait; }
+    @keyframes toolPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.45); }
+      50% { box-shadow: 0 0 0 7px rgba(239,68,68,0); }
+    }
+    .tool-status {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--moss-dim);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .checkbox-row label {
       display: flex; align-items: center; gap: 7px; font-size: 0.88rem; color: var(--panel-text); cursor: pointer;
     }
@@ -1307,6 +1359,8 @@
     [data-theme="brutal"] .spine:hover { filter: brightness(1.15); }
     [data-theme="brutal"] .nameplate h1 { letter-spacing: 0.01em; }
     [data-theme="brutal"] .panel h2 { text-transform: uppercase; letter-spacing: 0.02em; }
+    [data-theme="brutal"] .tool-btn { border-radius: 0; border-color: #3d3a34; }
+    [data-theme="studio"] .tool-btn { border-radius: 10px; }
 
     /* Studio: flat modern pill-tab nav, no skeuomorphism at all */
     [data-theme="studio"] .nameplate::before, [data-theme="studio"] .nameplate::after {
@@ -1479,6 +1533,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.4/dist/tesseract.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -1513,6 +1568,12 @@
         <div class="field" style="flex:2;">
           <label class="field-label">Topic or concept</label>
           <input type="text" id="explain-topic" placeholder="e.g. Photosynthesis, Quantum entanglement, The Cold War…">
+          <div class="input-tools">
+            <button type="button" class="tool-btn" id="explain-mic" title="Speak your topic" aria-label="Voice input">🎤</button>
+            <button type="button" class="tool-btn" id="explain-cam" title="Upload a photo of a question" aria-label="Upload a photo of a question">📷</button>
+            <input type="file" id="explain-file" accept="image/*" capture="environment" style="display:none;">
+            <span class="tool-status" id="explain-tool-status"></span>
+          </div>
         </div>
         <div class="field">
           <label class="field-label">Depth</label>
@@ -1541,6 +1602,12 @@
       <div class="field">
         <label class="field-label">Your notes</label>
         <textarea id="summarize-notes" placeholder="Paste notes here…"></textarea>
+        <div class="input-tools">
+          <button type="button" class="tool-btn" id="summarize-mic" title="Speak your notes" aria-label="Voice input">🎤</button>
+          <button type="button" class="tool-btn" id="summarize-cam" title="Upload a photo of your notes" aria-label="Upload a photo of your notes">📷</button>
+          <input type="file" id="summarize-file" accept="image/*" capture="environment" style="display:none;">
+          <span class="tool-status" id="summarize-tool-status"></span>
+        </div>
       </div>
       <div class="row">
         <div class="field">
@@ -1582,6 +1649,12 @@
         <label class="field-label" id="quiz-input-label">Topic</label>
         <input type="text" id="quiz-input-text" placeholder="e.g. The French Revolution, Newton's Laws…">
         <textarea id="quiz-input-notes" placeholder="Paste study material here…" style="display:none;"></textarea>
+        <div class="input-tools">
+          <button type="button" class="tool-btn" id="quiz-mic" title="Speak your topic or notes" aria-label="Voice input">🎤</button>
+          <button type="button" class="tool-btn" id="quiz-cam" title="Upload a photo of a question" aria-label="Upload a photo of a question">📷</button>
+          <input type="file" id="quiz-file" accept="image/*" capture="environment" style="display:none;">
+          <span class="tool-status" id="quiz-tool-status"></span>
+        </div>
       </div>
       <div class="row">
         <div class="field">
@@ -1618,6 +1691,12 @@
         <label class="field-label" id="fc-input-label">Topic</label>
         <input type="text" id="fc-input-text" placeholder="e.g. Mitosis, World War II causes…">
         <textarea id="fc-input-notes" placeholder="Paste study material here…" style="display:none;"></textarea>
+        <div class="input-tools">
+          <button type="button" class="tool-btn" id="fc-mic" title="Speak your topic or notes" aria-label="Voice input">🎤</button>
+          <button type="button" class="tool-btn" id="fc-cam" title="Upload a photo of a question" aria-label="Upload a photo of a question">📷</button>
+          <input type="file" id="fc-file" accept="image/*" capture="environment" style="display:none;">
+          <span class="tool-status" id="fc-tool-status"></span>
+        </div>
       </div>
       <div class="row">
         <div class="field">
@@ -2374,6 +2453,114 @@ function logStudy() {
 
 document.getElementById('streak-log').addEventListener('click', logStudy);
 updateStreakUI();
+
+// ─── Voice input + photo-to-text (OCR) tools ───────────────────
+function wireMic(btnId, getTargetEl, statusEl) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    btn.disabled = true;
+    btn.title = 'Voice input isn\'t supported in this browser';
+    return;
+  }
+  const recognition = new SR();
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+  let listening = false;
+  btn.addEventListener('click', () => {
+    if (listening) { recognition.stop(); return; }
+    try { recognition.start(); } catch (e) { /* already running */ }
+  });
+  recognition.onstart = () => {
+    listening = true;
+    btn.classList.add('recording');
+    if (statusEl) statusEl.textContent = 'Listening…';
+  };
+  recognition.onend = () => {
+    listening = false;
+    btn.classList.remove('recording');
+    if (statusEl) statusEl.textContent = '';
+  };
+  recognition.onerror = (e) => {
+    listening = false;
+    btn.classList.remove('recording');
+    if (statusEl) statusEl.textContent = e.error === 'not-allowed' ? 'Mic access denied' : 'Mic error — try again';
+    setTimeout(() => { if (statusEl) statusEl.textContent = ''; }, 3000);
+  };
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join(' ').trim();
+    const el = getTargetEl();
+    if (!el || !transcript) return;
+    el.value = el.value.trim() ? (el.value.trim() + ' ' + transcript) : transcript;
+    el.dispatchEvent(new Event('input'));
+  };
+}
+
+function wireCamera(btnId, fileId, getTargetEl, statusEl) {
+  const btn = document.getElementById(btnId);
+  const fileInput = document.getElementById(fileId);
+  if (!btn || !fileInput) return;
+  btn.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', async () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    const el = getTargetEl();
+    if (!el) return;
+    btn.classList.add('busy');
+    btn.disabled = true;
+    if (statusEl) statusEl.textContent = 'Reading image… 0%';
+    try {
+      if (typeof Tesseract === 'undefined') throw new Error('OCR library unavailable');
+      const worker = await Tesseract.createWorker('eng', 1, {
+        logger: (m) => {
+          if (statusEl && m.status === 'recognizing text') {
+            statusEl.textContent = `Reading image… ${Math.round(m.progress * 100)}%`;
+          }
+        }
+      });
+      const { data: { text } } = await worker.recognize(file);
+      await worker.terminate();
+      const cleaned = text.trim();
+      if (cleaned) {
+        el.value = el.value.trim() ? (el.value.trim() + '\n' + cleaned) : cleaned;
+        el.dispatchEvent(new Event('input'));
+        if (statusEl) statusEl.textContent = 'Text extracted from photo ✓';
+      } else if (statusEl) {
+        statusEl.textContent = "Couldn't find text in that photo — try a clearer shot.";
+      }
+    } catch (err) {
+      console.error('OCR failed:', err);
+      if (statusEl) statusEl.textContent = 'Could not read the image — try again or type it manually.';
+    } finally {
+      btn.classList.remove('busy');
+      btn.disabled = false;
+      fileInput.value = '';
+      if (statusEl) setTimeout(() => { statusEl.textContent = ''; }, 5000);
+    }
+  });
+}
+
+function activeFieldOf(textId, notesId) {
+  return () => {
+    const t = document.getElementById(textId);
+    const n = document.getElementById(notesId);
+    return (t && t.style.display !== 'none') ? t : n;
+  };
+}
+
+wireMic('explain-mic', () => document.getElementById('explain-topic'), document.getElementById('explain-tool-status'));
+wireCamera('explain-cam', 'explain-file', () => document.getElementById('explain-topic'), document.getElementById('explain-tool-status'));
+
+wireMic('summarize-mic', () => document.getElementById('summarize-notes'), document.getElementById('summarize-tool-status'));
+wireCamera('summarize-cam', 'summarize-file', () => document.getElementById('summarize-notes'), document.getElementById('summarize-tool-status'));
+
+wireMic('quiz-mic', activeFieldOf('quiz-input-text', 'quiz-input-notes'), document.getElementById('quiz-tool-status'));
+wireCamera('quiz-cam', 'quiz-file', activeFieldOf('quiz-input-text', 'quiz-input-notes'), document.getElementById('quiz-tool-status'));
+
+wireMic('fc-mic', activeFieldOf('fc-input-text', 'fc-input-notes'), document.getElementById('fc-tool-status'));
+wireCamera('fc-cam', 'fc-file', activeFieldOf('fc-input-text', 'fc-input-notes'), document.getElementById('fc-tool-status'));
 
 </script>
 </body>
