@@ -72,6 +72,7 @@
       --spine-reminder: #4a7a5a;
       --spine-streak: #d4a843;
       --spine-settings: #3a3a3a;
+      --spine-history: #4a3a6e;
       /* layout */
       --border-radius: 6px;
       --card-padding: 36px;
@@ -150,6 +151,7 @@
       --spine-reminder: #3f6b46;
       --spine-streak: #b8862a;
       --spine-settings: #33291d;
+      --spine-history: #6a4a6a;
       /* layout */
       --border-radius: 12px;
       --card-padding: 40px;
@@ -228,6 +230,7 @@
       --spine-reminder: #2fa88a;
       --spine-streak: #cf9f3f;
       --spine-settings: #556095;
+      --spine-history: #a34fd6;
       /* layout */
       --border-radius: 22px;
       --card-padding: 34px;
@@ -301,7 +304,8 @@
       --spine-pomodoro: #b71c1c;
       --spine-reminder: #1e1e1e;
       --spine-streak: #b71c1c;
-      --spine-settings: #1e1e1e;
+      --spine-settings: #b71c1c;
+      --spine-history: #1e1e1e;
       /* layout */
       --border-radius: 0px;
       --card-padding: 30px;
@@ -376,6 +380,7 @@
       --spine-reminder: #1a1d26;
       --spine-streak: #1a1d26;
       --spine-settings: #1a1d26;
+      --spine-history: #1a1d26;
       /* layout */
       --border-radius: 10px;
       --card-padding: 32px;
@@ -524,6 +529,7 @@
       --spine-reminder: #f0f1f5;
       --spine-streak: #f0f1f5;
       --spine-settings: #f0f1f5;
+      --spine-history: #f0f1f5;
     }
 
     /* ----- LIQUID GLASS AMBIENT ORBS (drifting colour behind the frosted panels) ----- */
@@ -792,6 +798,7 @@
     .spine[data-tab="reminder"] { --spine-color: var(--spine-reminder); }
     .spine[data-tab="streak"] { --spine-color: var(--spine-streak); }
     .spine[data-tab="settings"] { --spine-color: var(--spine-settings); }
+    .spine[data-tab="history"] { --spine-color: var(--spine-history); }
     @media (max-width:560px) {
       .shelf { gap: 4px; }
       .spine { width: auto; flex: 1; height: 104px; }
@@ -1555,6 +1562,7 @@
     <div class="spine" data-tab="pomodoro"><span class="spine-label">🍅 Pomodoro</span></div>
     <div class="spine" data-tab="reminder"><span class="spine-label">📌 Reminder</span></div>
     <div class="spine" data-tab="streak"><span class="spine-label">🔥 Streak</span></div>
+    <div class="spine" data-tab="history"><span class="spine-label">🗂️ History</span></div>
     <div class="spine" data-tab="settings"><span class="spine-label">⚙️ Settings</span></div>
   </div>
 
@@ -1761,6 +1769,23 @@
         <button class="btn primary" id="streak-log">📚 Log Today's Study</button>
       </div>
       <div class="streak-history" id="streak-history"></div>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="panel" id="panel-history">
+      <h2>🗂️ History</h2>
+      <p class="sub">Everything you've generated, saved locally in this browser — reload it instantly, no new request needed.</p>
+      <div class="history-toolbar">
+        <div class="choice-group" id="history-filter">
+          <div class="choice selected" data-val="all">All</div>
+          <div class="choice" data-val="explain">Explain</div>
+          <div class="choice" data-val="summarize">Summarize</div>
+          <div class="choice" data-val="quiz">Quiz</div>
+          <div class="choice" data-val="flashcards">Flashcards</div>
+        </div>
+        <button class="btn ghost small" id="history-clear">Clear all</button>
+      </div>
+      <div id="history-list"></div>
     </div>
 
     <!-- SETTINGS -->
