@@ -1,0 +1,8 @@
+# Hide the frontend UI templates (so Python shows as the main backend language)
+templates/* linguist-vendored
+
+# Hide documentation images
+docs/* linguist-vendored
+
+# Just in case you move CSS/JS to a static folder later
+static/* linguist-vendored
