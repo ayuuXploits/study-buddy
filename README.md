@@ -104,11 +104,17 @@ No bundler. No frontend build step. The whole UI loads straight from one `.html`
 ```
 
 Study-Buddy/
-├── app.py
+├── docs
+│   └── study-buddy.png
+│       ├──IMG1.png
+│       ├──IMG2.png
+│       ├──IMG3.png
+│       └── IMG4.png
 ├── templates
 │   └── index.html
-├── requirements.txt
 ├── README.md
+├── app.py
+├── requirements.txt
 ├── LICENSE
 └── .gitignore
 
