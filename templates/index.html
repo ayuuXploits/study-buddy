@@ -72,7 +72,8 @@
       --spine-reminder: #4a7a5a;
       --spine-streak: #d4a843;
       --spine-settings: #3a3a3a;
-      --spine-history: #4a3a6e;
+      --spine-dashboard: #4a6a7a;
+      --spine-library: #5c4a3a;
       /* layout */
       --border-radius: 6px;
       --card-padding: 36px;
@@ -151,7 +152,8 @@
       --spine-reminder: #3f6b46;
       --spine-streak: #b8862a;
       --spine-settings: #33291d;
-      --spine-history: #6a4a6a;
+      --spine-dashboard: #3a5a6a;
+      --spine-library: #5a3a2a;
       /* layout */
       --border-radius: 12px;
       --card-padding: 40px;
@@ -230,7 +232,8 @@
       --spine-reminder: #2fa88a;
       --spine-streak: #cf9f3f;
       --spine-settings: #556095;
-      --spine-history: #a34fd6;
+      --spine-dashboard: #2f9ac7;
+      --spine-library: #a86fd6;
       /* layout */
       --border-radius: 22px;
       --card-padding: 34px;
@@ -304,8 +307,9 @@
       --spine-pomodoro: #b71c1c;
       --spine-reminder: #1e1e1e;
       --spine-streak: #b71c1c;
-      --spine-settings: #b71c1c;
-      --spine-history: #1e1e1e;
+      --spine-settings: #1e1e1e;
+      --spine-dashboard: #1e1e1e;
+      --spine-library: #b71c1c;
       /* layout */
       --border-radius: 0px;
       --card-padding: 30px;
@@ -380,7 +384,8 @@
       --spine-reminder: #1a1d26;
       --spine-streak: #1a1d26;
       --spine-settings: #1a1d26;
-      --spine-history: #1a1d26;
+      --spine-dashboard: #1a1d26;
+      --spine-library: #1a1d26;
       /* layout */
       --border-radius: 10px;
       --card-padding: 32px;
@@ -529,7 +534,8 @@
       --spine-reminder: #f0f1f5;
       --spine-streak: #f0f1f5;
       --spine-settings: #f0f1f5;
-      --spine-history: #f0f1f5;
+      --spine-dashboard: #f0f1f5;
+      --spine-library: #f0f1f5;
     }
 
     /* ----- LIQUID GLASS AMBIENT ORBS (drifting colour behind the frosted panels) ----- */
@@ -797,8 +803,9 @@
     .spine[data-tab="pomodoro"] { --spine-color: var(--spine-pomodoro); }
     .spine[data-tab="reminder"] { --spine-color: var(--spine-reminder); }
     .spine[data-tab="streak"] { --spine-color: var(--spine-streak); }
+    .spine[data-tab="dashboard"] { --spine-color: var(--spine-dashboard); }
+    .spine[data-tab="library"] { --spine-color: var(--spine-library); }
     .spine[data-tab="settings"] { --spine-color: var(--spine-settings); }
-    .spine[data-tab="history"] { --spine-color: var(--spine-history); }
     @media (max-width:560px) {
       .shelf { gap: 4px; }
       .spine { width: auto; flex: 1; height: 104px; }
@@ -1534,6 +1541,166 @@
       color: var(--moss-dim);
       font-size: 0.75rem;
     }
+
+    /* ----- DASHBOARD ----- */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin: 6px 0 26px;
+    }
+    .stat-card {
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      border-radius: var(--border-radius);
+      padding: 16px 18px;
+      transition: background 0.3s, border 0.3s, border-radius 0.3s;
+    }
+    .stat-card .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--brass-dim);
+      margin-bottom: 6px;
+    }
+    .stat-card .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: var(--font-weight-heading);
+      color: var(--panel-text);
+      line-height: 1.1;
+    }
+    .stat-card .stat-sub {
+      font-size: 0.78rem;
+      color: var(--moss-dim);
+      margin-top: 4px;
+    }
+    .dash-section-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: var(--font-weight-heading);
+      margin: 26px 0 10px;
+    }
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 120px;
+      padding: 0 4px;
+      border-bottom: 1.5px solid var(--input-border);
+    }
+    .bar-chart .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+    }
+    .bar-chart .bar {
+      width: 60%;
+      min-height: 3px;
+      background: linear-gradient(180deg, var(--brass-bright), var(--brass-dim));
+      border-radius: 4px 4px 0 0;
+      transition: height 0.4s ease;
+    }
+    .bar-chart .bar-day {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: var(--moss-dim);
+      margin-top: 6px;
+    }
+    .dash-empty {
+      text-align: center;
+      color: var(--moss-dim);
+      font-size: 0.88rem;
+      padding: 20px 0;
+    }
+    .dash-reset {
+      margin-top: 30px;
+      text-align: right;
+    }
+
+    /* ----- LIBRARY ----- */
+    .lib-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .lib-controls .choice-group { flex: 1; }
+    .lib-controls input[type="text"] { flex: 1.4; min-width: 160px; }
+    .lib-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lib-item {
+      border: 1.5px solid var(--input-border);
+      border-radius: var(--border-radius);
+      background: var(--input-bg);
+      padding: 14px 16px;
+      transition: background 0.3s, border 0.3s, border-radius 0.3s;
+    }
+    .lib-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .lib-item-title {
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+    .lib-item-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brass-dim);
+      margin-top: 3px;
+    }
+    .lib-item-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .lib-item-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--panel-text);
+      transition: color 0.2s, transform 0.2s;
+      padding: 4px;
+    }
+    .lib-item-actions button:hover { color: var(--brass-bright); transform: scale(1.1); }
+    .lib-item-actions button.delete:hover { color: var(--error-color); }
+    .lib-item-body {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--output-border);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+    .lib-item-body.show { display: block; animation: fadeSlideUp 0.3s ease; }
+    .lib-item-body h1, .lib-item-body h2, .lib-item-body h3 { font-family: var(--font-display); margin: 0.8em 0 0.3em; }
+    .lib-item-body ul { padding-left: 1.2em; }
+    .lib-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--choice-selected-bg);
+      color: var(--choice-selected-text);
+      margin-right: 6px;
+    }
   </style>
 
   <!-- KaTeX CDN for math rendering -->
@@ -1562,7 +1729,8 @@
     <div class="spine" data-tab="pomodoro"><span class="spine-label">🍅 Pomodoro</span></div>
     <div class="spine" data-tab="reminder"><span class="spine-label">📌 Reminder</span></div>
     <div class="spine" data-tab="streak"><span class="spine-label">🔥 Streak</span></div>
-    <div class="spine" data-tab="history"><span class="spine-label">🗂️ History</span></div>
+    <div class="spine" data-tab="dashboard"><span class="spine-label">📊 Dashboard</span></div>
+    <div class="spine" data-tab="library"><span class="spine-label">📖 Library</span></div>
     <div class="spine" data-tab="settings"><span class="spine-label">⚙️ Settings</span></div>
   </div>
 
@@ -1771,21 +1939,72 @@
       <div class="streak-history" id="streak-history"></div>
     </div>
 
-    <!-- HISTORY -->
-    <div class="panel" id="panel-history">
-      <h2>🗂️ History</h2>
-      <p class="sub">Everything you've generated, saved locally in this browser — reload it instantly, no new request needed.</p>
-      <div class="history-toolbar">
-        <div class="choice-group" id="history-filter">
+    <!-- DASHBOARD -->
+    <div class="panel" id="panel-dashboard">
+      <h2>📊 Dashboard</h2>
+      <p class="sub">A look at how much you've been studying.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total study time</div>
+          <div class="stat-value" id="dash-total-time">0h 0m</div>
+          <div class="stat-sub">from focus sessions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Focus sessions</div>
+          <div class="stat-value" id="dash-sessions">0</div>
+          <div class="stat-sub">completed pomodoros</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Quizzes taken</div>
+          <div class="stat-value" id="dash-quizzes">0</div>
+          <div class="stat-sub" id="dash-quiz-avg">avg score —</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Flashcard decks</div>
+          <div class="stat-value" id="dash-decks">0</div>
+          <div class="stat-sub" id="dash-cards-reviewed">0 cards reviewed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Current streak</div>
+          <div class="stat-value" id="dash-current-streak">0</div>
+          <div class="stat-sub">days in a row</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Longest streak</div>
+          <div class="stat-value" id="dash-longest-streak">0</div>
+          <div class="stat-sub">personal best</div>
+        </div>
+      </div>
+
+      <div class="dash-section-title">Study time — last 7 days</div>
+      <div class="bar-chart" id="dash-bar-chart"></div>
+
+      <div class="dash-reset">
+        <button class="btn ghost small" id="dash-reset-btn">Reset all stats</button>
+      </div>
+    </div>
+
+    <!-- LIBRARY -->
+    <div class="panel" id="panel-library">
+      <h2>📖 Library</h2>
+      <p class="sub">Everything Study Buddy has generated for you, saved automatically.</p>
+
+      <div class="lib-controls">
+        <div class="choice-group" id="lib-filter">
           <div class="choice selected" data-val="all">All</div>
           <div class="choice" data-val="explain">Explain</div>
-          <div class="choice" data-val="summarize">Summarize</div>
-          <div class="choice" data-val="quiz">Quiz</div>
+          <div class="choice" data-val="summarize">Summaries</div>
+          <div class="choice" data-val="quiz">Quizzes</div>
           <div class="choice" data-val="flashcards">Flashcards</div>
         </div>
-        <button class="btn ghost small" id="history-clear">Clear all</button>
+        <input type="text" id="lib-search" placeholder="Search your library…">
       </div>
-      <div id="history-list"></div>
+
+      <div class="lib-list" id="lib-list"></div>
+      <div class="dash-reset">
+        <button class="btn ghost small" id="lib-clear-btn">Clear library</button>
+      </div>
     </div>
 
     <!-- SETTINGS -->
@@ -1940,6 +2159,8 @@ function activateSpine(btn) {
   btn.setAttribute('aria-selected', 'true');
   btn.tabIndex = 0;
   document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  if (btn.dataset.tab === 'dashboard') renderDashboard();
+  if (btn.dataset.tab === 'library') renderLibrary();
 }
 const spineEls = Array.from(document.querySelectorAll('.spine'));
 spineEls.forEach((btn, i) => {
@@ -1972,7 +2193,7 @@ function wireChoiceGroup(id) {
     });
   });
 }
-['summarize-style','summarize-length','quiz-source','fc-source'].forEach(wireChoiceGroup);
+['summarize-style','summarize-length','quiz-source','fc-source','lib-filter'].forEach(wireChoiceGroup);
 
 function selectedChoice(id) {
   return document.querySelector('#' + id + ' .choice.selected').dataset.val;
@@ -2033,6 +2254,203 @@ document.querySelectorAll('.mode-toggle-group button').forEach(btn => {
   });
 });
 
+// ─── LIBRARY (history of everything generated) ──────────────────
+function getLibrary() {
+  try { return JSON.parse(localStorage.getItem('library')) || []; } catch (e) { return []; }
+}
+function saveLibraryEntry(entry) {
+  const lib = getLibrary();
+  lib.unshift({
+    id: Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+    type: entry.type,          // 'explain' | 'summarize' | 'quiz' | 'flashcards'
+    title: entry.title,
+    meta: entry.meta || '',
+    createdAt: new Date().toISOString(),
+    data: entry.data           // markdown string, or structured quiz/flashcard data
+  });
+  localStorage.setItem('library', JSON.stringify(lib));
+}
+function deleteLibraryEntry(id) {
+  const lib = getLibrary().filter(e => e.id !== id);
+  localStorage.setItem('library', JSON.stringify(lib));
+  renderLibrary();
+}
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) +
+    ' · ' + d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+}
+function libBodyHtml(entry) {
+  if (entry.type === 'quiz') {
+    const qs = entry.data.questions || [];
+    return qs.map((q, i) => {
+      const opts = (q.options || []).map(o => '<div>' + (o[0] === q.answer ? '<strong>' : '') + escapeHtml(o) + (o[0] === q.answer ? ' ✓</strong>' : '') + '</div>').join('');
+      return '<p><strong>Q' + (i + 1) + '.</strong> ' + escapeHtml(q.question) + '</p>' + opts;
+    }).join('');
+  }
+  if (entry.type === 'flashcards') {
+    const cards = entry.data.flashcards || [];
+    return cards.map((c, i) => '<p><strong>' + (i + 1) + '. ' + escapeHtml(c.front) + '</strong><br>' + escapeHtml(c.back) + '</p>').join('');
+  }
+  return renderMarkdown(entry.data || '');
+}
+function renderLibrary() {
+  const listEl = document.getElementById('lib-list');
+  const filter = selectedChoice('lib-filter');
+  const q = (document.getElementById('lib-search').value || '').toLowerCase();
+  let lib = getLibrary();
+  if (filter !== 'all') lib = lib.filter(e => e.type === filter);
+  if (q) lib = lib.filter(e => (e.title + ' ' + e.meta).toLowerCase().includes(q));
+
+  if (!lib.length) {
+    listEl.innerHTML = '<div class="dash-empty">Nothing saved here yet — anything you explain, summarize, quiz, or make flashcards from will show up in your library.</div>';
+    return;
+  }
+  const typeLabel = { explain: 'Explain', summarize: 'Summary', quiz: 'Quiz', flashcards: 'Flashcards' };
+  listEl.innerHTML = lib.map(entry => `
+    <div class="lib-item" data-id="${entry.id}">
+      <div class="lib-item-head">
+        <div>
+          <span class="lib-badge">${typeLabel[entry.type] || entry.type}</span>
+          <span class="lib-item-title">${escapeHtml(entry.title)}</span>
+          <div class="lib-item-meta">${formatDate(entry.createdAt)}${entry.meta ? ' · ' + escapeHtml(entry.meta) : ''}</div>
+        </div>
+        <div class="lib-item-actions">
+          <button class="toggle" title="Expand">▾</button>
+          <button class="delete" title="Delete">🗑️</button>
+        </div>
+      </div>
+      <div class="lib-item-body"></div>
+    </div>
+  `).join('');
+
+  listEl.querySelectorAll('.lib-item').forEach(itemEl => {
+    const id = itemEl.dataset.id;
+    const entry = lib.find(e => e.id === id);
+    const bodyEl = itemEl.querySelector('.lib-item-body');
+    const headEl = itemEl.querySelector('.lib-item-head');
+    const toggleBtn = itemEl.querySelector('.toggle');
+    const deleteBtn = itemEl.querySelector('.delete');
+    const expand = () => {
+      const open = bodyEl.classList.toggle('show');
+      if (open && !bodyEl.dataset.rendered) {
+        bodyEl.innerHTML = libBodyHtml(entry);
+        bodyEl.dataset.rendered = '1';
+        setTimeout(() => renderMath(bodyEl), 30);
+      }
+      toggleBtn.textContent = open ? '▴' : '▾';
+    };
+    headEl.addEventListener('click', (e) => { if (e.target !== deleteBtn) expand(); });
+    deleteBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteLibraryEntry(id); });
+  });
+}
+document.getElementById('lib-search').addEventListener('input', renderLibrary);
+document.getElementById('lib-filter').addEventListener('change', renderLibrary);
+document.getElementById('lib-clear-btn').addEventListener('click', () => {
+  if (confirm('Clear your entire library? This cannot be undone.')) {
+    localStorage.removeItem('library');
+    renderLibrary();
+  }
+});
+
+// ─── DASHBOARD (study stats) ─────────────────────────────────────
+function getDashData() {
+  try {
+    return JSON.parse(localStorage.getItem('dashData')) || {
+      focusSeconds: 0,
+      sessions: 0,
+      quizzesTaken: 0,
+      quizScoreSum: 0,
+      deckssMade: 0,
+      cardsReviewed: 0,
+      dailySeconds: {}   // { 'YYYY-MM-DD': seconds }
+    };
+  } catch (e) {
+    return { focusSeconds: 0, sessions: 0, quizzesTaken: 0, quizScoreSum: 0, deckssMade: 0, cardsReviewed: 0, dailySeconds: {} };
+  }
+}
+function saveDashData(d) { localStorage.setItem('dashData', JSON.stringify(d)); }
+function todayKey() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function logFocusSeconds(seconds) {
+  const d = getDashData();
+  d.focusSeconds += seconds;
+  d.sessions += 1;
+  const key = todayKey();
+  d.dailySeconds[key] = (d.dailySeconds[key] || 0) + seconds;
+  saveDashData(d);
+}
+function logQuizCompletion(scorePct) {
+  const d = getDashData();
+  d.quizzesTaken += 1;
+  d.quizScoreSum += scorePct;
+  saveDashData(d);
+}
+function logDeckGenerated(cardCount) {
+  const d = getDashData();
+  d.deckssMade += 1;
+  d.cardsReviewed += cardCount;
+  saveDashData(d);
+}
+function fmtHM(totalSeconds) {
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  return h + 'h ' + m + 'm';
+}
+function computeStreaks() {
+  const streakData = JSON.parse(localStorage.getItem('streakData')) || { history: [] };
+  const days = Array.from(new Set(streakData.history.map(d => new Date(d).toDateString()))).sort((a, b) => new Date(a) - new Date(b));
+  if (!days.length) return { current: 0, longest: 0 };
+  let longest = 1, run = 1;
+  for (let i = 1; i < days.length; i++) {
+    const diff = (new Date(days[i]) - new Date(days[i - 1])) / 86400000;
+    run = diff === 1 ? run + 1 : 1;
+    longest = Math.max(longest, run);
+  }
+  // current streak = the actual streakData.count field (already tracks contiguous-to-today)
+  const current = streakData.count || 0;
+  return { current, longest: Math.max(longest, current) };
+}
+function renderDashboard() {
+  const d = getDashData();
+  document.getElementById('dash-total-time').textContent = fmtHM(d.focusSeconds);
+  document.getElementById('dash-sessions').textContent = d.sessions;
+  document.getElementById('dash-quizzes').textContent = d.quizzesTaken;
+  document.getElementById('dash-quiz-avg').textContent = d.quizzesTaken
+    ? 'avg score ' + Math.round(d.quizScoreSum / d.quizzesTaken) + '%'
+    : 'avg score —';
+  document.getElementById('dash-decks').textContent = d.deckssMade;
+  document.getElementById('dash-cards-reviewed').textContent = d.cardsReviewed + ' cards reviewed';
+
+  const streaks = computeStreaks();
+  document.getElementById('dash-current-streak').textContent = streaks.current;
+  document.getElementById('dash-longest-streak').textContent = streaks.longest;
+
+  // 7-day bar chart of focus time
+  const chartEl = document.getElementById('dash-bar-chart');
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const dt = new Date();
+    dt.setDate(dt.getDate() - i);
+    const key = dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0') + '-' + String(dt.getDate()).padStart(2, '0');
+    days.push({ key, label: dt.toLocaleDateString(undefined, { weekday: 'narrow' }), seconds: d.dailySeconds[key] || 0 });
+  }
+  const max = Math.max(1, ...days.map(x => x.seconds));
+  chartEl.innerHTML = days.map(x => {
+    const heightPct = Math.max(3, Math.round((x.seconds / max) * 100));
+    const mins = Math.round(x.seconds / 60);
+    return '<div class="bar-col" title="' + mins + ' min"><div class="bar" style="height:' + heightPct + '%"></div><div class="bar-day">' + x.label + '</div></div>';
+  }).join('');
+}
+document.getElementById('dash-reset-btn').addEventListener('click', () => {
+  if (confirm('Reset all dashboard stats (study time, quiz history, decks made)? Your streak and library stay intact.')) {
+    localStorage.removeItem('dashData');
+    renderDashboard();
+  }
+});
+
 // ─── EXPLAIN ──────────────────────────────────────────────────────
 document.getElementById('explain-btn').addEventListener('click', async () => {
   const topic = document.getElementById('explain-topic').value.trim();
@@ -2084,6 +2502,7 @@ Provide a thorough explanation and do not mention limitations about length or ch
     outputEl.classList.add('show');
     downloadEl.style.display = 'inline-block';
     downloadEl.onclick = () => download('explanation_' + topic.slice(0, 30).replace(/\s+/g, '_') + '.md', text);
+    saveLibraryEntry({ type: 'explain', title: topic, meta: level, data: text });
   } catch (e) {
     showError(errorEl, e.message || "Something went wrong.");
   } finally {
@@ -2133,6 +2552,7 @@ IMPORTANT – For any mathematical formulas, you MUST use LaTeX notation with pr
     outputEl.classList.add('show');
     downloadEl.style.display = 'inline-block';
     downloadEl.onclick = () => download('summary.md', text);
+    saveLibraryEntry({ type: 'summarize', title: notes.slice(0, 48).trim() + (notes.length > 48 ? '…' : ''), meta: style + ' · ' + length, data: text });
   } catch (e) {
     showError(errorEl, e.message || "Something went wrong.");
   } finally {
@@ -2144,6 +2564,8 @@ IMPORTANT – For any mathematical formulas, you MUST use LaTeX notation with pr
 let quizQuestions = [];
 let quizAnswers = {};
 let quizSubmitted = false;
+let quizTopicLabel = '';
+let quizLogged = false;
 
 document.getElementById('quiz-btn').addEventListener('click', async () => {
   const source = selectedChoice('quiz-source');
@@ -2173,6 +2595,8 @@ Use LaTeX for math if needed, with $...$ delimiters.`;
     quizQuestions = data.questions || [];
     quizAnswers = {};
     quizSubmitted = false;
+    quizLogged = false;
+    quizTopicLabel = input.slice(0, 48).trim() + (input.length > 48 ? '…' : '');
     renderQuiz();
   } catch (e) {
     showError(errorEl, "Couldn't generate the quiz — try again. (" + (e.message || '') + ")");
@@ -2210,6 +2634,16 @@ function renderQuiz() {
     html += '<div class="score-banner">Score: ' + correctCount + ' / ' + quizQuestions.length + ' (' + pct + '%) — ' +
       (pct === 100 ? 'perfect score!' : pct >= 70 ? 'nicely done.' : 'worth another pass through the notes.') + '</div>';
     html += '<button class="btn ghost small" id="quiz-reset-btn" style="margin-top:12px;">Try again</button>';
+    if (!quizLogged) {
+      quizLogged = true;
+      logQuizCompletion(pct);
+      saveLibraryEntry({
+        type: 'quiz',
+        title: quizTopicLabel || 'Quiz',
+        meta: correctCount + '/' + quizQuestions.length + ' (' + pct + '%)',
+        data: { questions: quizQuestions }
+      });
+    }
   }
   html += '</div>';
   outputEl.innerHTML = html;
@@ -2261,6 +2695,15 @@ Use LaTeX for math if needed, with $...$ delimiters.`;
     fcIndex = 0;
     fcFlipped = false;
     renderFlashcards();
+    if (fcCards.length) {
+      logDeckGenerated(fcCards.length);
+      saveLibraryEntry({
+        type: 'flashcards',
+        title: input.slice(0, 48).trim() + (input.length > 48 ? '…' : ''),
+        meta: fcCards.length + ' cards · ' + depth,
+        data: { flashcards: fcCards }
+      });
+    }
   } catch (e) {
     showError(errorEl, "Couldn't generate flashcards — try again. (" + (e.message || '') + ")");
   } finally {
@@ -2304,6 +2747,7 @@ let pomodoroInterval = null;
 let pomodoroSeconds = 25 * 60;
 let pomodoroPhase = 'work';
 let pomodoroRunning = false;
+let pomodoroElapsedThisSession = 0;
 
 const pomodoroTimeEl = document.getElementById('pomodoro-time');
 const pomodoroPhaseEl = document.getElementById('pomodoro-phase');
@@ -2323,6 +2767,7 @@ function updatePomodoroDisplay() {
 function resetPomodoro() {
   clearInterval(pomodoroInterval);
   pomodoroRunning = false;
+  pomodoroElapsedThisSession = 0;
   const workMins = parseInt(workInput.value) || 25;
   const breakMins = parseInt(breakInput.value) || 5;
   pomodoroSeconds = pomodoroPhase === 'work' ? workMins * 60 : breakMins * 60;
@@ -2343,10 +2788,15 @@ function startPomodoro() {
   pomodoroPauseBtn.disabled = false;
   pomodoroInterval = setInterval(() => {
     pomodoroSeconds--;
+    if (pomodoroPhase === 'work') pomodoroElapsedThisSession++;
     updatePomodoroDisplay();
     if (pomodoroSeconds <= 0) {
       clearInterval(pomodoroInterval);
       pomodoroRunning = false;
+      if (pomodoroPhase === 'work' && pomodoroElapsedThisSession > 0) {
+        logFocusSeconds(pomodoroElapsedThisSession);
+        pomodoroElapsedThisSession = 0;
+      }
       pomodoroPhase = pomodoroPhase === 'work' ? 'break' : 'work';
       const workMins = parseInt(workInput.value) || 25;
       const breakMins = parseInt(breakInput.value) || 5;
@@ -2365,6 +2815,10 @@ function startPomodoro() {
 function pausePomodoro() {
   clearInterval(pomodoroInterval);
   pomodoroRunning = false;
+  if (pomodoroPhase === 'work' && pomodoroElapsedThisSession > 0) {
+    logFocusSeconds(pomodoroElapsedThisSession);
+    pomodoroElapsedThisSession = 0;
+  }
   pomodoroStartBtn.disabled = false;
   pomodoroPauseBtn.disabled = true;
 }
@@ -2586,6 +3040,10 @@ wireCamera('quiz-cam', 'quiz-file', activeFieldOf('quiz-input-text', 'quiz-input
 
 wireMic('fc-mic', activeFieldOf('fc-input-text', 'fc-input-notes'), document.getElementById('fc-tool-status'));
 wireCamera('fc-cam', 'fc-file', activeFieldOf('fc-input-text', 'fc-input-notes'), document.getElementById('fc-tool-status'));
+
+// Initial dashboard/library render (in case those tabs are the ones ever opened first)
+renderDashboard();
+renderLibrary();
 
 </script>
 </body>
