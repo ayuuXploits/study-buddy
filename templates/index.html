@@ -75,7 +75,6 @@
       --spine-dashboard: #4a6a7a;
       --spine-library: #5c4a3a;
       --spine-mindmap: #3a5c4a;
-      --spine-mindmap: #3a5c4a;
       /* layout */
       --border-radius: 6px;
       --card-padding: 36px;
@@ -156,7 +155,6 @@
       --spine-settings: #33291d;
       --spine-dashboard: #3a5a6a;
       --spine-library: #5a3a2a;
-      --spine-mindmap: #3f5a30;
       --spine-mindmap: #3a6a4a;
       /* layout */
       --border-radius: 12px;
@@ -238,7 +236,6 @@
       --spine-settings: #556095;
       --spine-dashboard: #2f9ac7;
       --spine-library: #a86fd6;
-      --spine-mindmap: #4fc78a;
       --spine-mindmap: #4fd68f;
       /* layout */
       --border-radius: 22px;
@@ -317,7 +314,6 @@
       --spine-dashboard: #1e1e1e;
       --spine-library: #b71c1c;
       --spine-mindmap: #1e1e1e;
-      --spine-mindmap: #1e1e1e;
       /* layout */
       --border-radius: 0px;
       --card-padding: 30px;
@@ -330,7 +326,7 @@
       --letter-spacing: 0.06em;
     }
 
-    /* 5. Studio — clean modern minimal SaaS look (favorite) */
+    /* 5. Studio — clean modern minimal SaaS look */
     [data-theme="studio"] {
       --bg-0: #0d0f14;
       --bg-1: #14171e;
@@ -394,7 +390,6 @@
       --spine-settings: #1a1d26;
       --spine-dashboard: #1a1d26;
       --spine-library: #1a1d26;
-      --spine-mindmap: #1a1d26;
       --spine-mindmap: #1a1d26;
       /* layout */
       --border-radius: 10px;
@@ -546,7 +541,6 @@
       --spine-settings: #f0f1f5;
       --spine-dashboard: #f0f1f5;
       --spine-library: #f0f1f5;
-      --spine-mindmap: #f0f1f5;
       --spine-mindmap: #f0f1f5;
     }
 
@@ -2142,7 +2136,7 @@
 
 <script>
 /* ============================================================
-   FRONTEND – calls the secure Vercel proxy
+   FRONTEND – calls the Flask backend proxy
    ============================================================ */
 
 const PROXY_URL = '/api/groq';
@@ -2170,21 +2164,51 @@ function extractJson(raw) {
 }
 
 function renderMarkdown(md) {
+  // 1. Save math blocks (display and inline) with placeholders
+  const mathBlocks = [];
+  let idx = 0;
+  // Display math: \[ ... \] and $$ ... $$
+  md = md.replace(/\\\[(.*?)\\\]/gs, (m, c) => {
+    mathBlocks.push({ type: 'display', content: '\\[' + c + '\\]' });
+    return `__MATH_BLOCK_${idx++}__`;
+  });
+  md = md.replace(/\$\$(.*?)\$\$/gs, (m, c) => {
+    mathBlocks.push({ type: 'display', content: '$$' + c + '$$' });
+    return `__MATH_BLOCK_${idx++}__`;
+  });
+  // Inline math: $...$
+  md = md.replace(/\$(.*?)\$/gs, (m, c) => {
+    mathBlocks.push({ type: 'inline', content: '$' + c + '$' });
+    return `__MATH_BLOCK_${idx++}__`;
+  });
+
+  // 2. Escape HTML
   let html = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // 3. Markdown conversion
   html = html
     .replace(/^### (.*)$/gm, '<h3>$1</h3>')
     .replace(/^## (.*)$/gm, '<h2>$1</h2>')
     .replace(/^# (.*)$/gm, '<h1>$1</h1>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>');
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-  html = html.replace(/(^|\n)[-*] (.*)/g, '$1<li>$2</li>');
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+    .replace(/(^|\n)[-*] (.*)/g, '$1<li>$2</li>');
   html = html.replace(/(<li>.*<\/li>\n?)+/g, m => '<ul>' + m + '</ul>');
+
+  // 4. Paragraph wrapping (skip blocks that are headers, lists, or math placeholders)
   html = html.split(/\n{2,}/).map(block => {
-    if (/^<h\d|^<ul/.test(block.trim())) return block;
-    if (block.trim() === '') return '';
-    return '<p>' + block.replace(/\n/g, '<br>') + '</p>';
+    const trimmed = block.trim();
+    if (!trimmed) return '';
+    if (/^<h\d|^<ul|^__MATH_BLOCK/.test(trimmed)) return trimmed;
+    return '<p>' + trimmed.replace(/\n/g, '<br>') + '</p>';
   }).join('\n');
+
+  // 5. Restore math blocks (unchanged, no escaping)
+  mathBlocks.forEach((block, i) => {
+    html = html.replace(`__MATH_BLOCK_${i}__`, block.content);
+  });
+
   return html;
 }
 
