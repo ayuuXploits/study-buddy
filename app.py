@@ -32,7 +32,7 @@ def groq_proxy():
                 {'role': 'user', 'content': user_prompt}
             ],
             'temperature': 0.7,
-            'max_tokens': 2000
+            'max_tokens': 3200
         }
         response = requests.post(GROQ_URL, headers=headers, json=payload)
         response.raise_for_status()
