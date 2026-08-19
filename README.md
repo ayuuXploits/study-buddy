@@ -172,6 +172,7 @@ set GROQ_API_KEY=your_key_here        # Windows (cmd)
 
 ```bash
 python app.py
+
 ```
 
 The app serves `templates/index.html` and exposes the proxy at:
