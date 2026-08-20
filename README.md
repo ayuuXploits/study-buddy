@@ -34,6 +34,7 @@
 
 *No sign-up. No app to install. Paste a topic or your notes, get explanations, summaries, quizzes, flashcards – plus a Pomodoro timer, reminders, a study streak, and five visual themes to study in.*
 
+
 </div>
 <br/>
 
