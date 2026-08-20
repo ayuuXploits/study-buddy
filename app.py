@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 import requests
 import os
 
@@ -26,7 +26,7 @@ def groq_proxy():
             'Content-Type': 'application/json'
         }
         payload = {
-            'model': 'openai/gpt-oss-120b',   # unchanged as requested
+            'model': 'openai/gpt-oss-120b',
             'messages': [
                 {'role': 'system', 'content': system_prompt},
                 {'role': 'user', 'content': user_prompt}
@@ -34,22 +34,13 @@ def groq_proxy():
             'temperature': 0.7,
             'max_tokens': 3200
         }
-
-        response = requests.post(GROQ_URL, headers=headers, json=payload, timeout=60)
+        response = requests.post(GROQ_URL, headers=headers, json=payload)
         response.raise_for_status()
         result = response.json()
         content = result['choices'][0]['message']['content']
         return jsonify({'content': content})
-
-    except requests.exceptions.Timeout:
-        return jsonify({'error': 'Request timed out. Please try again.'}), 504
-    except requests.exceptions.RequestException as e:
-        # log the full error for debugging
-        print('Groq error:', e.response.text if e.response else str(e))
-        return jsonify({'error': str(e)}), 500
     except Exception as e:
-        print('Unexpected error:', e)
-        return jsonify({'error': 'Internal server error'}), 500
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
