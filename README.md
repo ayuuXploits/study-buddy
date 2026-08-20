@@ -163,6 +163,7 @@ gunicorn
 ### 3. Set your Groq API key
 
 ```bash
+
 export GROQ_API_KEY=your_key_here     # macOS/Linux
 set GROQ_API_KEY=your_key_here        # Windows (cmd)
 
