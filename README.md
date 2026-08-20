@@ -90,7 +90,7 @@ Click a spine to switch modes — each one is its own self-contained study tool.
 | **Structure** | HTML5 (single file) |
 | **Styling** | CSS3 — custom properties, backdrop‑filter, 3D transforms, animations |
 | **Logic** | Vanilla JavaScript (ES6+) — no React, no build step |
-| **AI Backend** | [Groq](https://groq.com) API (Llama 3.3 70B Versatile), called through a Flask proxy |
+| **AI Backend** | [Groq](https://groq.com) API (openai/gpt-oss-120b), called through a Flask proxy |
 | **Proxy** | [Flask](https://flask.palletsprojects.com/) + `flask-cors`, served by `gunicorn` |
 | **Hosting** | [Render](https://render.com) (or any host that runs a Python web service) |
 | **Persistence** | `localStorage` for Pomodoro settings, Reminders, Streak data, Theme and Mode preferences |
