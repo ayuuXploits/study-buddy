@@ -147,6 +147,7 @@ cd Study-Buddy
 
 ```bash
 pip install -r requirements.txt
+
 ```
 
 `requirements.txt`:
