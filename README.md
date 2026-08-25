@@ -207,7 +207,6 @@ Open `http://localhost:5000` and start studying.
    ```bash
    gunicorn app:app
    
-   
    ```
 5. Add an environment variable `GROQ_API_KEY` with your key under the service's **Environment** tab.
 6. Deploy — Render gives you a `https://your-app.onrender.com` URL. That's your live proxy + frontend in one.
