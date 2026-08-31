@@ -122,9 +122,6 @@ Study-Buddy/
 ├── requirements.txt
 ├── LICENSE
 └── .gitignore
-
-
-
 ```
 
 ---
