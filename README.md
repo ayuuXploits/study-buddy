@@ -87,7 +87,7 @@ Click a spine to switch modes — each one is its own self-contained study tool.
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|---|---|
+|---|----|
 | **Structure** | HTML5 (single file) |
 | **Styling** | CSS3 — custom properties, backdrop‑filter, 3D transforms, animations |
 | **Logic** | Vanilla JavaScript (ES6+) — no React, no build step |
