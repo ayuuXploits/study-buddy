@@ -51,7 +51,7 @@
 Click a spine to switch modes — each one is its own self-contained study tool.
 
 | Mode | What it does |
-|---|---|
+|----|---|
 | **Explain** | Breaks a topic down at Simple (ELI5), Intermediate, or Advanced depth |
 | **Summarize** | Condenses pasted notes into bullets, a paragraph, or key terms + definitions |
 | **Quiz** | Writes a multiple-choice quiz and grades you instantly, with explanations |
