@@ -201,6 +201,7 @@ Open `http://localhost:5000` and start studying.
    ```bash
    pip install -r requirements.txt
    
+   
    ```
 4. **Start command:**
    ```bash
