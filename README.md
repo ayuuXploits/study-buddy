@@ -139,14 +139,12 @@ Study-Buddy/
 ```bash
 git clone https://github.com/ayuuXploits/Study-Buddy.git
 cd Study-Buddy
-
 ```
 
 ### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
-
 ```
 
 `requirements.txt`:
@@ -166,8 +164,6 @@ gunicorn
 
 export GROQ_API_KEY=your_key_here     # macOS/Linux
 set GROQ_API_KEY=your_key_here        # Windows (cmd)
-
-
 ```
 
 `app.py` reads it from the environment and never hardcodes it — the same variable name works locally and on Render.
@@ -205,8 +201,6 @@ Open `http://localhost:5000` and start studying.
 4. **Start command:**
    ```bash
    gunicorn app:app
-   
-   
    ```
 5. Add an environment variable `GROQ_API_KEY` with your key under the service's **Environment** tab.
 6. Deploy — Render gives you a `https://your-app.onrender.com` URL. That's your live proxy + frontend in one.
