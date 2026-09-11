@@ -139,6 +139,7 @@ Study-Buddy/
 ```bash
 git clone https://github.com/ayuuXploits/Study-Buddy.git
 cd Study-Buddy
+
 ```
 
 ### 2. Install dependencies
