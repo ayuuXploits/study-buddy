@@ -1,40 +1,46 @@
-```
-  ░███████ ░███████  ░██     ░██ ░██ ░████████ ░████████ ░██       ░██    ░██ 
-  ░██      ░██    ░██░██     ░██ ░██    ░██    ░██       ░██        ░██  ░██  
-  ░███████ ░███████  ░██     ░██ ░██    ░██    ░███████  ░██         ░████    
-  ░██      ░██   ░██ ░██     ░██ ░██    ░██    ░██       ░██          ░██     
-  ░██      ░██    ░██ ░████████  ░██    ░██    ░██       ░████████    ░██     
 
-   ░██████  ░██       ░██ ░████████  ░██████   ░██████  
-  ░██    ░██░██       ░██ ░██       ░██    ░██░██    ░██
-  ░██       ░████████████ ░███████   ░███████  ░███████ 
-  ░██       ░██       ░██ ░██              ░██       ░██
-   ░██████  ░██       ░██ ░████████  ░██████   ░██████  
 ```
+  ░██████   ░██████████░██     ░██ ░███████   ░██     ░██    ░████████   ░██     ░██ ░███████   ░███████   ░██     ░██ 
+ ░██   ░██      ░██    ░██     ░██ ░██   ░██   ░██   ░██     ░██    ░██  ░██     ░██ ░██   ░██  ░██   ░██   ░██   ░██  
+░██             ░██    ░██     ░██ ░██    ░██   ░██ ░██      ░██    ░██  ░██     ░██ ░██    ░██ ░██    ░██   ░██ ░██   
+ ░████████      ░██    ░██     ░██ ░██    ░██    ░████       ░████████   ░██     ░██ ░██    ░██ ░██    ░██    ░████    
+        ░██     ░██    ░██     ░██ ░██    ░██     ░██        ░██     ░██ ░██     ░██ ░██    ░██ ░██    ░██     ░██     
+ ░██   ░██      ░██     ░██   ░██  ░██   ░██      ░██        ░██     ░██  ░██   ░██  ░██   ░██  ░██   ░██      ░██     
+  ░██████       ░██      ░██████   ░███████       ░██        ░█████████    ░██████   ░███████   ░███████       ░██     
+                                                                                                                       
+                                                                                                                       
+                                                                                                                       
+```
+
 
 <div align="center">
 
-<img src="./static/hd_drosophila_fly.png" alt="Fruitfly Chess" width="480" />
+<div align="center">
 
-**Play 3D chess against a fruit fly powered by a biological brain connectome GNN & Stockfish NNUE — complete with real-time biomechanics, outer foreleg grooming, and physical piece manipulation.**
+<img src="./docs/study-buddy.png" alt="Study Buddy" width="500" />
+
+**Pull a "book" off the shelf and let AI do the tutoring — plus Pomodoro, reminders, streak tracking, and a choice of five visual themes.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
-[![PyG](https://img.shields.io/badge/PyTorch_Geometric-GNN-3C2179?style=for-the-badge)](https://pyg.org)
-[![Three.js](https://img.shields.io/badge/Three.js-R3F-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org)
-[![Stockfish 19](https://img.shields.io/badge/Stockfish-3500+_ELO-1572B6?style=for-the-badge)](https://stockfishchess.org)
+[![HTML5](https://img.shields.io/badge/HTML5-Single_File-E34F26?style=for-the-badge&logo=html5&logoColor=white)](.)
+[![CSS3](https://img.shields.io/badge/CSS3-Custom_Props-1572B6?style=for-the-badge&logo=css3&logoColor=white)](.)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](.)
+[![Python](https://img.shields.io/badge/Backend-Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Groq](https://img.shields.io/badge/AI-Groq-00A5E0?style=for-the-badge)](https://groq.com)
+[![Render](https://img.shields.io/badge/Hosted_on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com)
 
-[**🐛 Report Bug**](https://github.com/ayuuXploits/fruitfly-chess/issues/new?labels=bug&title=%5BBug%5D+) &nbsp;·&nbsp; [**✨ Request Feature**](https://github.com/ayuuXploits/fruitfly-chess/issues/new?labels=enhancement&title=%5BFeature%5D+) &nbsp;·&nbsp; [**📄 Read License**](./LICENSE)
-
-<br/>
-
-*An anatomically accurate Drosophila melanogaster sits across the chessboard. In real time, the fly breathes, twitches its wings, performs authentic foreleg grooming reflexes, and physically swoops down from its observation perch to grasp chess pieces in its forelegs and fly them to destination squares.*
+[**📖 Try It**](https://study-buddy-3xji.onrender.com/) &nbsp;·&nbsp; [**🐛 Report Bug**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=bug&title=%5BBug%5D+) &nbsp;·&nbsp; [**✨ Request Feature**](https://github.com/ayuuXploits/Study-Buddy/issues/new?labels=enhancement&title=%5BFeature%5D+)
 
 <br/>
 
-<img src="./static/fly_brain_transparent.png" width="46%" alt="Connectome Brain" /> &nbsp; <img src="./static/hd_drosophila_fly.png" width="46%" alt="NeuroMechFly 3D Model" />
+*No sign-up. No app to install. Paste a topic or your notes, get explanations, summaries, quizzes, flashcards – plus a Pomodoro timer, reminders, a study streak, and five visual themes to study in.*
+
+
+</div>
+<br/>
+
+<img src="./docs/IMG1.png" width="48%" /> &nbsp; <img src="./docs/IMG2.png" width="48%" />
+<img src="./docs/IMG3.png" width="48%" /> &nbsp; <img src="./docs/IMG4.png" width="48%" />
 
 </div>
 
@@ -42,91 +48,83 @@
 
 ## ✨ Features
 
-### 🪰 The Grandmaster Insect Across the Board
-Across the board sits a biological *Drosophila melanogaster* modeled after the scientific **NeuroMechFly** architecture.
+### 🕯️ Eight “Books” on the Shelf
+Click a spine to switch modes — each one is its own self-contained study tool.
 
-| Feature | What it does |
-|---|---|
-| **Autonomous Flight & Move Execution** | When making a move, the fly takes off from its perch, calculates a 3D Catmull-Rom flight spline, dives onto the piece, clamps it in its forelegs, carries it through the air, and drops it onto the target square. |
-| **Biological Foreleg Grooming** | In idle state, the fly’s knees splay outward laterally while its 5-segment tarsi cross in front of the proboscis to rub along the **outer (lateral & dorsal) surfaces** in rapid anti-phase strokes (~4.1 Hz). |
-| **Abdominal Respiration** | Realistic biological breathing pumping rhythm expanding and contracting the 7 melanin-banded tergites. |
-| **Wing Kinematics** | High-frequency aerodynamic wing flutter (85 rad/s) during flight and calculation saccades; resting in an authentic posterior V-posture over the abdomen. |
-| **Neural Synaptic Aura** | Cyan synaptic particle glow radiating from the head and compound eyes whenever the fly is evaluating board positions. |
+| Mode | What it does |
+|----|---|
+| **Explain** | Breaks a topic down at Simple (ELI5), Intermediate, or Advanced depth |
+| **Summarize** | Condenses pasted notes into bullets, a paragraph, or key terms + definitions |
+| **Quiz** | Writes a multiple-choice quiz and grades you instantly, with explanations |
+| **Flashcards** | Builds a flip-card deck you can browse and export to Markdown |
+| **Pomodoro** | Customizable work/break timer with notifications |
+| **Reminders** | Add, toggle, and delete tasks – all stored locally |
+| **Study Streak** | Log your study sessions daily – the counter grows if you keep the habit |
+| **Settings** | Choose your theme (Academia, Retro, Liquid Glass, Brutalist, Studio) and Light/Dark mode |
 
----
+### 🎚️ Tunable Output
+- **Explain** — toggle a real-world analogy and a worked example on or off
+- **Summarize** — pick style (bullets / paragraph / key terms) and length (short / medium / comprehensive)
+- **Quiz** — 3–8 questions, easy / medium / hard difficulty
+- **Flashcards** — 5–12 cards, concise or detailed answers
+- **Pomodoro** — adjust work and break durations
+- **Theme** — pick a visual style (Academia, Retro, Liquid Glass, Brutalist, Studio) and switch between Light and Dark mode
 
-### 🧠 Biological Brain Connectome (GNN) + Stockfish NNUE
-- **256-Neuron Biological Graph**: Direct brain wiring topology capturing Sensory Neurons (64), Mushroom Body Kenyon Cells (64), Central Complex Ring Neurons (64), and Motor Descending Output Neurons (64).
-- **Graph Neural Network (GNN)**: 3-layer Graph Attention Network (GAT) propagating synaptic activation over connectome edge weights to compute move probabilities.
-- **Stockfish 19 NNUE Hybrid Engine**: Combines biological connectome policy heuristics with deep alpha-beta search (depth 14, 3500+ ELO) for tactical mastery.
-- **Trained on Magnus Carlsen Games**: Connectome policy weights fine-tuned on Grandmaster games via imitation learning.
-- **Ultra-Light Quantized Checkpoint**: Symmetric 8-bit quantized weights (**7.1 MB**) that dequantize on boot with near-zero precision loss (<0.6% deviation).
+### 🃏 Interactive, Not Just Text
+- Quiz answers are checked live in the browser — correct/incorrect states, a running score, and a short explanation per question
+- Flashcards flip in 3D on click, with prev/next navigation and one-click Markdown export
+- Explanations and summaries render straight from Markdown (headers, bold, lists) with no page reload
+- Pomodoro timer ticks down, switches phases, and sends browser notifications
+- Reminders are persisted in your browser’s local storage
 
----
-
-### 🎮 Interactive 3D WebGL Arena
-- **Full 3D Chessboard & Pieces**: Procedurally rendered low-poly 3D chess pieces with authentic wooden materials, specular rim lighting, and ambient studio occlusion shadows.
-- **Orbit Controls**: Rotate, zoom, and inspect the fly and board from any angle in 3D space with smooth damping.
-- **Move Highlights & Legal Move Guides**: Dynamic glowing cyan markers indicating selectable squares, legal destinations, and check status.
-- **Live Neural Brain Canvas**: Real-time HUD canvas visualizing active synaptic firings, showing how signals propagate through sensory, mushroom body, and motor neuropils during thinking.
-- **Eval Bar & Material Counter**: Real-time evaluation bar and captured piece differential tracker.
+### 🎨 Fully Themed
+- Five distinct themes — **Academia** (default), **Retro**, **Liquid Glass**, **Brutalist**, and **Studio** — that change colours, fonts, border radii, shadows, and even layout details (Studio swaps the book-spine tabs for a flat pill nav bar)
+- Light and Dark mode per theme, saved in `localStorage`
+- Keyboard-accessible tabs (arrow keys + Enter/Space), visible focus rings, and `prefers-reduced-motion` support baked in
+- Smooth animations on panel switches, hover states, and theme transitions
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| **Frontend Framework** | React 18 + TypeScript + Vite | Reactive UI state and hot-module reloading |
-| **3D Graphics Engine** | Three.js + React Three Fiber (R3F) + Drei | WebGL rendering, lighting, shadows, and orbit controls |
-| **Kinematics Engine** | Procedural Inverse Kinematics (Three.js) | Segmented insect limb joints, spline flight curves & grooming |
-| **Styling** | Tailwind CSS + CSS Glassmorphism | HUD panels, brain canvas overlays, and responsive layout |
-| **Backend Server** | Python 3.10+ & FastAPI + Uvicorn | High-performance asynchronous REST API |
-| **Graph Neural Network** | PyTorch & PyTorch Geometric (PyG) | Drosophila connectome graph convolutions and GAT layers |
-| **Chess Engine** | python-chess + Stockfish NNUE | FEN/UCI validation, move generation, and tactical evaluation |
+| Layer | Technology |
+|---|----|
+| **Structure** | HTML5 (single file) |
+| **Styling** | CSS3 — custom properties, backdrop‑filter, 3D transforms, animations |
+| **Logic** | Vanilla JavaScript (ES6+) — no React, no build step |
+| **AI Backend** | [Groq](https://groq.com) API (openai/gpt-oss-120b), called through a Flask proxy |
+| **Proxy** | [Flask](https://flask.palletsprojects.com/) + `flask-cors`, served by `gunicorn` |
+| **Hosting** | [Render](https://render.com) (or any host that runs a Python web service) |
+| **Persistence** | `localStorage` for Pomodoro settings, Reminders, Streak data, Theme and Mode preferences |
+
+No bundler. No frontend build step. The whole UI loads straight from one `.html` file; Flask just serves it and proxies the Groq calls.
 
 ---
 
 ## 🗂️ Project Structure
 
 ```
-fruitfly-chess/
-├── app.py                          # FastAPI backend & game state controller
-├── connectome_chess.py             # Connectome GNN policy & Drosophila graph extractor
-├── connectome_model.pt             # Quantized GNN weights (7.12 MB, int8 precision)
-├── requirements.txt                # Python backend dependencies
-├── LICENSE                         # MIT License with author copyright & research credits
-├── README.md                       # Documentation & showcase
-├── magnus_carlsen_200_games.pgn    # Grandmaster training dataset
-├── magnus_training_log.csv         # Training loss & accuracy metrics
-├── static/                         # Static textures, brain diagrams & fly renders
-│   ├── hd_drosophila_fly.png       # High-definition fly render
-│   ├── fly_brain_transparent.png   # Transparent neuropil schematic
-│   ├── fly_brain.png               # High-res connectome diagram
-│   ├── realistic_drosophila_body.png
-│   └── realistic_drosophila_wing.png
-└── frontend/                       # React Three Fiber 3D application
-    ├── index.html                  # HTML entry point
-    ├── package.json                # NPM scripts and dependencies
-    ├── vite.config.ts              # Vite bundling configuration
-    ├── tailwind.config.js          # Tailwind styling setup
-    ├── dist/                       # Pre-built production bundle (ready to run!)
-    └── src/
-        ├── App.tsx                 # Main application controller
-        ├── main.tsx                # React DOM root
-        ├── api.ts                  # REST API communication client
-        ├── types.ts                # TypeScript interfaces for game & connectome
-        ├── components/
-        │   ├── Fly3D.tsx           # NeuroMechFly 3D model & grooming kinematics
-        │   ├── Board3D.tsx         # 3D chess board & interactive square highlights
-        │   ├── Piece3D.tsx         # Procedural 3D chess pieces
-        │   ├── ChessViewport.tsx   # Canvas, studio lighting, shadows & orbit controls
-        │   ├── BrainCanvas.tsx     # Real-time connectome neural firing visualizer
-        │   ├── EvalBar.tsx         # Evaluation advantage indicator
-        │   ├── MoveHistory.tsx     # Move notation table with PGN export
-        │   └── Header.tsx          # Status indicators and reset controls
-        └── hooks/
-            └── useChessGame.ts     # Game state management & API polling hook
+
+Study-Buddy/
+├──.github
+│   └── workflows
+│       └── keep-alive.yml 
+├── docs
+│   └── study-buddy.png
+│       ├──IMG1.png
+│       ├──IMG2.png
+│       ├──IMG3.png
+│       └──IMG4.png
+├── templates
+│   └── index.html
+├── .gitattributes
+├── README.md
+├── app.py
+├── requirements.txt
+├── LICENSE
+└── .gitignore
+
+
 ```
 
 ---
@@ -134,114 +132,104 @@ fruitfly-chess/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Python 3.10+**
-- **Node.js 18+** *(Optional: only needed if you want to modify and recompile the frontend)*
-- A modern browser with WebGL 2.0 support (Chrome, Firefox, Safari, Edge)
+- A modern browser
+- Python 3.9+
+- A [Groq API key](https://console.groq.com) — read only by the Flask backend, never exposed to the browser
 
----
-
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ayuuXploits/fruitfly-chess.git
-cd fruitfly-chess
+git clone https://github.com/ayuuXploits/Study-Buddy.git
+cd Study-Buddy
+
 ```
 
----
-
-### 2. Set Up Python Environment
+### 2. Install dependencies
 
 ```bash
-# Create virtual environment
-python3 -m venv venv
-
-# Activate virtual environment
-source venv/bin/activate       # macOS / Linux
-# venv\Scriptsctivate      # Windows (Command Prompt)
-# .env\Scripts\Activate.ps1 # Windows (PowerShell)
-
-# Install dependencies
 pip install -r requirements.txt
+
 ```
 
----
+`requirements.txt`:
 
-### 3. Run the Game
+
+```
+flask
+flask-cors
+requests
+gunicorn
+
+```
+
+### 3. Set your Groq API key
+
+```bash
+
+export GROQ_API_KEY=your_key_here     # macOS/Linux
+set GROQ_API_KEY=your_key_here        # Windows (cmd)
+```
+
+`app.py` reads it from the environment and never hardcodes it — the same variable name works locally and on Render.
+
+### 4. Run it
 
 ```bash
 python app.py
+
 ```
 
-The server will start at:
-👉 **`http://127.0.0.1:8000`**
+The app serves `templates/index.html` and exposes the proxy at:
+
+| | |
+|---|---|
+| **Endpoint** | `POST /api/groq` |
+| **Accepts** | JSON body `{ "system": "...", "user": "..." }` |
+| **Returns** | JSON body `{ "content": "..." }` |
+| **Model** | `llama-3.3-70b-versatile` via the Groq Chat Completions API |
+
+Open `http://localhost:5000` and start studying.
 
 ---
 
-### 4. Frontend Development (Optional)
+## ☁️ Deploying to Render
 
-If you wish to edit the 3D models, shaders, or UI components:
+1. Push the repo to GitHub.
+2. In Render, create a **new Web Service** from the repo.
+3. **Build command:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Start command:**
+   ```bash
+   gunicorn app:app
+   
+   ```
+5. Add an environment variable `GROQ_API_KEY` with your key under the service's **Environment** tab.
+6. Deploy — Render gives you a `https://your-app.onrender.com` URL. That's your live proxy + frontend in one.
 
-```bash
-cd frontend
-npm install
-npm run dev      # Starts Vite dev server with hot reload at http://localhost:5173
-npm run build    # Compiles production bundle to frontend/dist/
-```
-
----
-
-## 🌐 API Reference
-
-The FastAPI backend exposes the following REST endpoints:
-
-| Method | Endpoint | Description | Payload / Parameters |
-|---|---|---|---|
-| `GET` | `/` | Serves the 3D WebGL React application | None |
-| `GET` | `/api/state` | Retrieves the current board state, FEN, turn, check status, and legal moves | None |
-| `POST` | `/api/player-move` | Validates and applies a human player move | `{ "move": "e2e4", "mode": "tactical" }` |
-| `POST` | `/api/fly-move` | Prompts the Drosophila Connectome AI to compute and execute its move | `{ "mode": "tactical" }` |
-| `POST` | `/api/reset` | Resets the game to start position and sets side / AI mode | `{ "player_color": "white", "mode": "tactical" }` |
-| `GET` | `/api/connectome` | Fetches 256 neuron coordinates and synaptic weights for HUD visualization | None |
+> Prefer a split setup (static frontend + separate API host)? Point the frontend's fetch call at whatever URL you deploy `app.py` to — Vercel, Netlify Functions, Railway, Fly.io, or a plain VPS all work the same way, as long as they expose the `POST /api/groq` contract above.
 
 ---
 
-## 🔬 Biological & Biomechanical Foundations
+## 📖 Usage Guide
 
-### 1. NeuroMechFly Biomechanics
-The fly model follows the anatomical articulation from the **NeuroMechFly** project (*Nature Methods*, 2022):
-- **Coxa & Trochanter**: Basal thoracic ball-and-socket attachments providing anterior/lateral projection.
-- **Spindle Femur**: Muscular thigh tapered at both proximal and distal ends, elevated into high-arched knees.
-- **Tibial Spurs**: Distal spines used in natural leg-cleaning reflexes.
-- **5-Segment Tarsus**: Articulated basitarsus (T1), tarsomeres (T2–T4), and pretarsus (T5) with claws.
-- **Contralateral Foreleg Grooming**: Tarsi cross at the midline in anti-phase reciprocating strokes (~4.1 Hz) to clean their **outer lateral and dorsal surfaces**, recreating the iconic insect grooming behavior.
-
-### 2. FlyWire Connectome Graph
-- Utilizes synaptic density matrices derived from the adult *Drosophila* whole-brain electron microscopy volume (**FlyWire**, *Nature*, 2024).
-- Information flows sequentially:
-  `Sensory Input (64)` ➔ `Mushroom Body (64)` ➔ `Central Complex (64)` ➔ `Motor Descending (64)`
-- Graph attention layers compute message-passing vectors across this wiring to output move policy distributions.
+| Panel | Input | Output |
+|---|---|---|
+| Explain | A topic name | Plain-language explanation with optional analogy + example |
+| Summarize | Pasted notes | Bullets / paragraph / key-terms summary, downloadable as `.md` |
+| Quiz | Topic or notes | Interactive multiple-choice quiz with live scoring |
+| Flashcards | Topic or notes | Flippable card deck, exportable to `.md` |
 
 ---
 
-## 📜 Credits & Attributions
+## 🧑‍💻 Development Notes
 
-This project synthesizes original game systems with groundbreaking neuroscience and chess computing:
-
-1. **NeuroMechFly (EPFL Biorobotics Laboratory)**
-   - *Reference*: Lobato-Ríos et al., *Nature Methods*, 19(5), 620–627 (2022).
-   - *Contribution*: 3D multi-segment leg joints, arched knee kinematics, and grooming limits.
-2. **FlyWire / FAFB Connectome (Princeton University & Cambridge MRC LMB)**
-   - *Reference*: Dorkenwald et al., *Nature* (2024).
-   - *Contribution*: Whole-brain synaptic wiring diagram and neuropil groupings.
-3. **Stockfish Chess Engine**
-   - *Authors*: The Stockfish Developers (GPLv3).
-   - *Contribution*: Tactical deep-search evaluation and NNUE positional heuristics.
-4. **Python-Chess**
-   - *Author*: Niklas Fiekas (GPLv3).
-   - *Contribution*: Chess move generation and validation.
-5. **Three.js & React Three Fiber**
-   - *Authors*: Ricardo Cabello (Mr.doob) & Poimandres (MIT).
-   - *Contribution*: WebGL 3D rendering pipeline.
+- **Single AI chokepoint** — every feature funnels through one `callAI(system, user)` function on the frontend, which POSTs to `/api/groq`, so swapping providers only means changing `app.py` and this one contract.
+- **Defensive JSON parsing** — `extractJson()` strips stray code fences and locates the `{...}` block before parsing, since LLMs don't always return perfectly clean JSON for the quiz/flashcard prompts.
+- **No framework, manual re-render** — quiz and flashcard state (current question, flipped card, score) live in plain JS variables and get re-rendered by rebuilding an HTML string on each change.
+- **Hand-rolled Markdown** — `renderMarkdown()` converts headers, bold, italics, and lists to HTML for the Explain/Summarize output, avoiding a Markdown library dependency.
+- **Themed by CSS custom properties** — every theme (including the default Academia look) is a block of CSS variables switched via `data-theme`/`data-mode` attributes on `<html>`; adding a new theme means adding one variable block, not touching component markup.
 
 ---
 
@@ -255,6 +243,6 @@ Licensed under the [MIT License](./LICENSE).
 
 <div align="center">
 
-Built with 🪰 & ❤️ by [ayuuXploits](https://github.com/ayuuXploits)
+Built with ❤️ by [ayuuXploits](https://github.com/ayuuXploits)
 
 </div>
