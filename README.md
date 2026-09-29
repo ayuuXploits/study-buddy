@@ -124,6 +124,7 @@ Study-Buddy/
 ├── LICENSE
 └── .gitignore
 
+
 ```
 
 ---
